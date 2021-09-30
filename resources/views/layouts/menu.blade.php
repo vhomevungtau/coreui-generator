@@ -1,6 +1,6 @@
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle">
-        <i class="nav-icon icon-cursor"></i>
+        <i class="nav-icon icon-user"></i>
         <span>Quản trị người dùng</span>
     </a>
 
