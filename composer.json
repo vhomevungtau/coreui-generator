@@ -17,7 +17,8 @@
         "infyomlabs/coreui-templates": "8.0.x-dev",
         "infyomlabs/laravel-generator": "8.0.x-dev",
         "laravel/ui": "3.0",
-        "laravelcollective/html": "^6.2"
+        "laravelcollective/html": "^6.2",
+        "infyomlabs/generator-builder": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
