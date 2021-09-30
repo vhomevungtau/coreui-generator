@@ -5,4 +5,14 @@ CoreUI Generator
 
 php artisan key:generate 
 
+Spatie Permission
+==========================
+
+https://spatie.be/docs/laravel-permission/v5/installation-laravel
+
+ID generate
+==========================
+
+https://laravelarticle.com/laravel-custom-id-generator
+
 
