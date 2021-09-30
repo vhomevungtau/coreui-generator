@@ -2,20 +2,52 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Models\Role as ModelsRole;
+use Eloquent as Model;
 
-class Role extends ModelsRole
+
+
+/**
+ * Class Role
+ * @package App\Models
+ * @version September 30, 2021, 2:17 pm UTC
+ *
+ * @property string $name
+ * @property string $desc
+ */
+class Role extends Model
 {
-    use HasFactory, SoftDeletes;
 
-    protected $fillable = [
+
+    public $table = 'roles';
+    
+
+
+
+    public $fillable = [
         'name',
-        'desc',
-        'guard_name',
+        'desc'
     ];
 
-    public $incrementing = false;
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'name' => 'string',
+        'desc' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'name' => 'required',
+        'desc' => 'required'
+    ];
+
+    
 }

@@ -2,16 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Post;
+use App\Models\Role;
 use App\Repositories\BaseRepository;
 
 /**
- * Class PostRepository
+ * Class RoleRepository
  * @package App\Repositories
- * @version September 30, 2021, 9:38 am UTC
+ * @version September 30, 2021, 2:17 pm UTC
 */
 
-class PostRepository extends BaseRepository
+class RoleRepository extends BaseRepository
 {
     /**
      * @var array
@@ -36,6 +36,6 @@ class PostRepository extends BaseRepository
      **/
     public function model()
     {
-        return Post::class;
+        return Role::class;
     }
 }

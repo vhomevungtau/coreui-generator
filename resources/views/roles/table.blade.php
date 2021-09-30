@@ -1,26 +1,25 @@
 <div class="table-responsive-sm">
-    <table id="data-table" class="table table-responsive-sm table-striped table-bordered table-hover" style="width:100%"">
+    <table id="role-table" class="table table-striped table-bordered table-hover" style="width:100%">
         <thead>
             <tr class="text-center">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Desc</th>
-                <th colspan=" 3">Action</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
-
         <tbody>
-            @foreach ($posts as $post)
+            @foreach ($roles as $role)
                 <tr>
-                    <td class="text-center">{{ $post->id }}</td>
-                    <td>{{ $post->name }}</td>
-                    <td>{{ $post->desc }}</td>
+                    <td class="text-center">{{ $role->id }}</td>
+                    <td>{{ $role->name }}</td>
+                    <td>{{ $role->desc }}</td>
                     <td class="text-center">
-                        {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
+                        {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
-                            <a href="{{ route('posts.show', [$post->id]) }}" class='btn btn-ghost-success'><i
+                            <a href="{{ route('roles.show', [$role->id]) }}" class='btn btn-ghost-success'><i
                                     class="fa fa-eye"></i></a>
-                            <a href="{{ route('posts.edit', [$post->id]) }}" class='btn btn-ghost-info'><i
+                            <a href="{{ route('roles.edit', [$role->id]) }}" class='btn btn-ghost-info'><i
                                     class="fa fa-edit"></i></a>
                             {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,6 @@ Route::post(
 )->name('io_generator_builder_generate_from_file');
 
 
-Route::resource('posts', App\Http\Controllers\PostController::class);
+Route::resource('users', App\Http\Controllers\UserController::class)->middleware('auth');
+Route::resource('roles', App\Http\Controllers\RoleController::class);
+Route::resource('permissions', App\Http\Controllers\PermissionController::class);

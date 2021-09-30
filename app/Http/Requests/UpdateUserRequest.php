@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Post;
 
-class CreatePostRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
 
     /**
@@ -25,6 +24,13 @@ class CreatePostRequest extends FormRequest
      */
     public function rules()
     {
-        return Post::$rules;
+        $id = $this->route('user');
+        $rules = [
+          'name'     => 'required',
+          'email'    => 'required|email|unique:users,email,'.$id,
+          'password' => 'confirmed'
+        ];
+        
+        return $rules;
     }
 }

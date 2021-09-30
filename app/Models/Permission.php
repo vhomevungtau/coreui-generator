@@ -3,26 +3,23 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 /**
- * Class Post
+ * Class Permission
  * @package App\Models
- * @version September 30, 2021, 9:38 am UTC
+ * @version September 30, 2021, 2:19 pm UTC
  *
  * @property string $name
  * @property string $desc
  */
-class Post extends Model
+class Permission extends Model
 {
-    use SoftDeletes;
 
 
-    public $table = 'posts';
+    public $table = 'permissions';
     
-
-    protected $dates = ['deleted_at'];
 
 
 

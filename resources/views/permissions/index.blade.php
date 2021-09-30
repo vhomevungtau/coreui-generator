@@ -2,7 +2,7 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Posts</li>
+        <li class="breadcrumb-item">Permissions</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -12,17 +12,12 @@
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-align-justify"></i>
-                            Posts
-                            <a class="pull-right" href="{{ route('posts.create') }}"><i
+                            Permissions
+                            <a class="pull-right" href="{{ route('permissions.create') }}"><i
                                     class="fa fa-plus-square fa-lg"></i></a>
                         </div>
                         <div class="card-body">
-                            @include('posts.table')
-                            <div class="pull-right mr-3">
-
-                                @include('coreui-templates::common.paginate', ['records' => $posts])
-
-                            </div>
+                            @include('permissions.table')
                         </div>
                     </div>
                 </div>
@@ -31,11 +26,11 @@
     </div>
 @endsection
 
+
 @push('scripts')
     <script>
         $(function() {
-
-            $('#data-table').DataTable({
+            $('#perm-table').DataTable({
                 "language": {
                     "search": "Tìm:",
                     "zeroRecords": "Không có dữ liệu",
@@ -47,7 +42,7 @@
                     },
                     "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ dòng dữ liệu",
                     "infoEmpty": "",
-                    "lengthMenu":     "Hiển thị _MENU_ dữ liệu",
+                    "lengthMenu": "Hiển thị _MENU_ dữ liệu",
                 },
                 "oLanguage": {
                     "sProcessing": '<span>Please wait ...</span>'
@@ -69,14 +64,14 @@
                         "searchable": true
                     },
                     {
-                        "title": "Name",
+                        "title": "Quyền hạn",
                         "data": "name",
                         "name": "name",
                         "visible": true,
                         "searchable": true
                     },
                     {
-                        "title": "Desc",
+                        "title": "Mô tả",
                         "data": "desc",
                         "name": "desc",
                         "visible": true,
@@ -92,6 +87,8 @@
                 ],
             });
         });
+
+
     </script>
 
 @endpush
