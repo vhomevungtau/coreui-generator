@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('permissions.index') !!}">Quyền hạn</a>
+         <a href="{!! route('tags.index') !!}">Thẻ người dùng</a>
       </li>
       <li class="breadcrumb-item active">Thêm mới</li>
     </ol>
@@ -15,12 +15,12 @@
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-plus-square-o fa-lg"></i>
-                                <strong>Thêm mới quyền hạn</strong>
+                                <strong>Thêm mới thẻ</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'permissions.store']) !!}
+                                {!! Form::open(['route' => 'tags.store']) !!}
 
-                                   @include('permissions.fields')
+                                   @include('tags.fields')
 
                                 {!! Form::close() !!}
                             </div>

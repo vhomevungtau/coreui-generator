@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Permission;
 use App\Models\Permissions;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,7 @@ class RoleSeeder extends Seeder
 
         $role = Role::findById('210001');
 
-        $permissions = Permissions::all();
+        $permissions = Permission::all();
 
         foreach ($permissions as $permission) {
             $role->permissions()->attach($permission);

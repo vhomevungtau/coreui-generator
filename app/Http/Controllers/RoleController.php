@@ -9,6 +9,7 @@ use App\Repositories\RoleRepository;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Controllers\AppBaseController;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class RoleController extends AppBaseController
 {
@@ -55,6 +56,8 @@ class RoleController extends AppBaseController
     public function store(CreateRoleRequest $request)
     {
         $input = $request->all();
+
+        $input['id'] = IdGenerator::generate(['table' => 'roles', 'length' => 6, 'prefix' => date('y')]);
 
         $role = $this->roleRepository->create($input);
 

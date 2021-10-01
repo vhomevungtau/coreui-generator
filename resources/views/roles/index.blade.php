@@ -2,7 +2,7 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Roles</li>
+        <li class="breadcrumb-item">Vai trò</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -11,10 +11,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa fa-align-justify"></i>
-                            Roles
-                            <a class="pull-right" href="{{ route('roles.create') }}"><i
-                                    class="fa fa-plus-square fa-lg"></i></a>
+                            <i class="fa fa-user-secret"></i>
+                            Danh sách vai trò
+                            <a class="btn btn-primary pull-right" href="{{ route('roles.create') }}">
+                                Thêm</a>
                         </div>
                         <div class="card-body">
                             @include('roles.table')

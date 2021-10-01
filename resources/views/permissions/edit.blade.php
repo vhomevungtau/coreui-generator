@@ -3,19 +3,19 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('permissions.index') !!}">Permission</a>
+             <a href="{!! route('permissions.index') !!}">Quyền hạn</a>
           </li>
-          <li class="breadcrumb-item active">Edit</li>
+          <li class="breadcrumb-item active">Cập nhật</li>
         </ol>
     <div class="container-fluid">
          <div class="animated fadeIn">
              @include('coreui-templates::common.errors')
              <div class="row">
-                 <div class="col-lg-12">
+                 <div class="col-lg-6">
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Edit Permission</strong>
+                              <strong>Cập nhật quyền hạn</strong>
                           </div>
                           <div class="card-body">
                               {!! Form::model($permission, ['route' => ['permissions.update', $permission->id], 'method' => 'patch']) !!}

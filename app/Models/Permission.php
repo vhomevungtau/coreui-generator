@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Permission as ModelsPermission;
 
 /**
@@ -15,15 +18,17 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 class Permission extends ModelsPermission
 {
 
+    use HasFactory, SoftDeletes;
 
     public $table = 'permissions';
 
-
+    public $incrementing = false;
 
 
     public $fillable = [
         'name',
-        'desc'
+        'desc',
+        'guard_name'
     ];
 
     /**
@@ -46,6 +51,14 @@ class Permission extends ModelsPermission
         'name' => 'required',
         'desc' => 'required'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'permissions', 'length' => 6, 'prefix' => date('y')]);
+        });
+    }
 
 
 }

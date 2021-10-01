@@ -2,26 +2,29 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Quyền hạn</li>
+        <li class="breadcrumb-item">Thẻ người dùng</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
-            @include('flash::message')
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fa fa-address-card-o"></i>
-                            Danh sách quyền hạn
-                            <a class="btn btn-primary pull-right" href="{{ route('permissions.create') }}">Thêm</a>
-                        </div>
-                        <div class="card-body">
-                            @include('permissions.table')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+             @include('flash::message')
+             <div class="row">
+                 <div class="col-lg-6">
+                     <div class="card">
+                         <div class="card-header">
+                             <i class="fa fa-tags"></i>
+                             Danh sách thẻ
+                             <a class="btn btn-primary pull-right" href="{{ route('tags.create') }}">Thêm</a>
+                         </div>
+                         <div class="card-body">
+                             @include('tags.table')
+                              <div class="pull-right mr-3">
+
+                              </div>
+                         </div>
+                     </div>
+                  </div>
+             </div>
+         </div>
     </div>
 @endsection
 
@@ -29,7 +32,7 @@
 @push('scripts')
     <script>
         $(function() {
-            $('#perm-table').DataTable({
+            $('#tag-table').DataTable({
                 "language": {
                     "search": "Tìm:",
                     "zeroRecords": "Không có dữ liệu",
@@ -63,16 +66,9 @@
                         "searchable": true
                     },
                     {
-                        "title": "Quyền hạn",
+                        "title": "Thẻ người dùng",
                         "data": "name",
                         "name": "name",
-                        "visible": true,
-                        "searchable": true
-                    },
-                    {
-                        "title": "Mô tả",
-                        "data": "desc",
-                        "name": "desc",
                         "visible": true,
                         "searchable": true
                     },
@@ -86,8 +82,7 @@
                 ],
             });
         });
-
-
     </script>
 
 @endpush
+

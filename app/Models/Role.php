@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Spatie\Permission\Models\Role as ModelsRole;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 /**
  * Class Role
@@ -35,6 +36,8 @@ class Role extends ModelsRole
         'desc' => 'string'
     ];
 
+    public $incrementing = false;
+
     /**
      * Validation rules
      *
@@ -44,6 +47,14 @@ class Role extends ModelsRole
         'name' => 'required',
         'desc' => 'required'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'roles', 'length' => 6, 'prefix' => date('y')]);
+        });
+    }
 
 
 }

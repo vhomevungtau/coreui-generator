@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">
-             <a href="{!! route('roles.index') !!}">Vai trò</a>
+             <a href="{!! route('tags.index') !!}">Thẻ người dùng</a>
           </li>
           <li class="breadcrumb-item active">Cập nhật</li>
         </ol>
@@ -15,12 +15,12 @@
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
-                              <strong>Cập nhật vai trò</strong>
+                              <strong>Cập nhật thẻ</strong>
                           </div>
                           <div class="card-body">
-                              {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'patch']) !!}
+                              {!! Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'patch']) !!}
 
-                              @include('roles.fields')
+                              @include('tags.fields')
 
                               {!! Form::close() !!}
                             </div>

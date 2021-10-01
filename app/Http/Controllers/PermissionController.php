@@ -7,6 +7,7 @@ use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\PermissionRepository;
 use App\Http\Controllers\AppBaseController;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Http\Requests\CreatePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 
@@ -55,6 +56,8 @@ class PermissionController extends AppBaseController
     public function store(CreatePermissionRequest $request)
     {
         $input = $request->all();
+
+        $input['id'] = IdGenerator::generate(['table' => 'permissions', 'length' => 6, 'prefix' => date('y')]);
 
         $permission = $this->permissionRepository->create($input);
 
