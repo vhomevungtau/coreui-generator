@@ -15,7 +15,7 @@ ID generate
 
 https://laravelarticle.com/laravel-custom-id-generator
 
-$id = IdGenerator::generate(['table' => 'users', 'length' => 10, 'prefix' => date('y')]);
+$input['id'] = IdGenerator::generate(['table' => 'roles', 'length' => 6, 'prefix' => date('y')]);
 
 
 
