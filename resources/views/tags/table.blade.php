@@ -1,18 +1,16 @@
 <div class="table-responsive-sm">
-    <table id="tag-table" class="table table-striped table-bordered table-hover" style="width:100%">
+    <table class="table table-striped" id="tags-table">
         <thead>
-            <tr class="text-center">
-                <th>ID</th>
-                <th>Thẻ người dùng</th>
-                <th colspan="3">Hành động</th>
+            <tr>
+                <th>Name</th>
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($tags as $tag)
             <tr>
-                <td class="text-center">{{ $tag->id }}</td>
                 <td>{{ $tag->name }}</td>
-                <td class="text-center">
+                <td>
                     {!! Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
                         <a href="{{ route('tags.show', [$tag->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>

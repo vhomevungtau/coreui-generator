@@ -3,19 +3,19 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('tags.index') !!}">Thẻ người dùng</a>
+         <a href="{!! route('tags.index') !!}">Tag</a>
       </li>
-      <li class="breadcrumb-item active">Thêm mới</li>
+      <li class="breadcrumb-item active">Create</li>
     </ol>
      <div class="container-fluid">
           <div class="animated fadeIn">
                 @include('coreui-templates::common.errors')
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-plus-square-o fa-lg"></i>
-                                <strong>Thêm mới thẻ</strong>
+                                <strong>Create Tag</strong>
                             </div>
                             <div class="card-body">
                                 {!! Form::open(['route' => 'tags.store']) !!}

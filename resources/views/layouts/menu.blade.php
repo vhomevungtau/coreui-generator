@@ -25,9 +25,10 @@
         </li>
     </ul>
 </li>
+
 <li class="nav-item {{ Request::is('tags*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('tags.index') }}">
-        <i class="nav-icon fa fa-tags"></i>
+        <i class="nav-icon icon-cursor"></i>
         <span>Tags</span>
     </a>
 </li>

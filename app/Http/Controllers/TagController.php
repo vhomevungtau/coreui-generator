@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Response;
-use Laracasts\Flash\Flash;
-use Illuminate\Http\Request;
-use App\Repositories\TagRepository;
 use App\Http\Requests\CreateTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Repositories\TagRepository;
 use App\Http\Controllers\AppBaseController;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Http\Request;
+use Flash;
+use Response;
 
 class TagController extends AppBaseController
 {
