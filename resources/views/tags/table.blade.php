@@ -1,14 +1,16 @@
 <div class="table-responsive-sm">
-    <table class="table table-striped" id="tags-table">
+    <table class="table table-striped table-bordered table-hover" style="width:100%" id="tag-table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th colspan="3">Action</th>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Thẻ người dùng</th>
+                <th colspan="3">Hành động</th>
             </tr>
         </thead>
         <tbody>
         @foreach($tags as $tag)
-            <tr>
+            <tr class="text-center">
+                <td>{{ $tag->id }}</td>
                 <td>{{ $tag->name }}</td>
                 <td>
                     {!! Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'delete']) !!}

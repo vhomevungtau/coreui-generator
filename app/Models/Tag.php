@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
 /**
@@ -31,6 +32,8 @@ class Tag extends EloquentModel
         'name'
     ];
 
+    public $incrementing = false;
+
     /**
      * The attributes that should be casted to native types.
      *
@@ -47,7 +50,7 @@ class Tag extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'name' => 'reqiuired|unique'
+        'name' => 'required|unique:tags'
     ];
 
     /**
@@ -55,6 +58,14 @@ class Tag extends EloquentModel
      **/
     public function users()
     {
-        return $this->belongsToMany(\App\Models\User::class, 'user_tag', 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'user_tag');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'tags', 'length' => 6, 'prefix' => date('y')]);
+        });
     }
 }

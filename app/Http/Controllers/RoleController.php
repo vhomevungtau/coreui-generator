@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Permission;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\RoleRepository;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -43,7 +45,12 @@ class RoleController extends AppBaseController
      */
     public function create()
     {
-        return view('roles.create');
+        $permissions = Permission::all();
+
+        return view('roles.create',[
+            'permissions'   => $permissions,
+            'rolePerms'    => []
+        ]);
     }
 
     /**
@@ -61,7 +68,7 @@ class RoleController extends AppBaseController
 
         $role = $this->roleRepository->create($input);
 
-        Flash::success('Role saved successfully.');
+        Flash::success('Thêm vai trò thành công.');
 
         return redirect(route('roles.index'));
     }
@@ -78,7 +85,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error('Không tìm thấy vai trò');
 
             return redirect(route('roles.index'));
         }
@@ -97,13 +104,21 @@ class RoleController extends AppBaseController
     {
         $role = $this->roleRepository->find($id);
 
+        $rolePerms = $role->permissions->pluck('id', 'id')->all();
+
+        $permissions = Permission::all();
+
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error('Không tìm thấy vai trò');
 
             return redirect(route('roles.index'));
         }
 
-        return view('roles.edit')->with('role', $role);
+        return view('roles.edit',[
+            'role'              => $role,
+            'rolePerms'         => $rolePerms,
+            'permissions'       => $permissions,
+        ]);
     }
 
     /**
@@ -119,14 +134,18 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error('Không tìm thấy vai trò');
 
             return redirect(route('roles.index'));
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
 
-        Flash::success('Role updated successfully.');
+        // Permission
+        $role = $this->roleRepository->find($id);
+        $role->syncPermissions($request->permission);
+
+        Flash::success('Cập nhật vai trò thành công.');
 
         return redirect(route('roles.index'));
     }
@@ -145,14 +164,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Role not found');
+            Flash::error('Không tìm thấy vai trò');
 
             return redirect(route('roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
-        Flash::success('Role deleted successfully.');
+        Flash::success('Xóa vai trò thành công.');
 
         return redirect(route('roles.index'));
     }

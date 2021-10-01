@@ -61,7 +61,7 @@ class PermissionController extends AppBaseController
 
         $permission = $this->permissionRepository->create($input);
 
-        Flash::success('Permission saved successfully.');
+        Flash::success('Thêm quyền hạn thành công.');
 
         return redirect(route('permissions.index'));
     }
@@ -78,7 +78,7 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Permission not found');
+            Flash::error('Không tìm thấy quyền hạn');
 
             return redirect(route('permissions.index'));
         }
@@ -98,7 +98,7 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Permission not found');
+            Flash::error('Không tìm thấy quyền hạn');
 
             return redirect(route('permissions.index'));
         }
@@ -119,14 +119,14 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Permission not found');
+            Flash::error('Không tìm thấy quyền hạnd');
 
             return redirect(route('permissions.index'));
         }
 
         $permission = $this->permissionRepository->update($request->all(), $id);
 
-        Flash::success('Permission updated successfully.');
+        Flash::success('Cập nhật quyền hạn thành công.');
 
         return redirect(route('permissions.index'));
     }
@@ -145,14 +145,14 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Permission not found');
+            Flash::error('Không tìm thấy quyền hạn');
 
             return redirect(route('permissions.index'));
         }
 
         $this->permissionRepository->delete($id);
 
-        Flash::success('Permission deleted successfully.');
+        Flash::success('Xóa quyền hạn thành công.');
 
         return redirect(route('permissions.index'));
     }

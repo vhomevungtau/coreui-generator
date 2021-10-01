@@ -77,7 +77,7 @@
                         "searchable": true
                     },
                     {
-                        "title": "Action",
+                        "title": "Hành động",
                         "data": "action",
                         "name": "action",
                         "visible": true,

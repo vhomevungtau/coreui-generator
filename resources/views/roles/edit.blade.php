@@ -11,7 +11,7 @@
          <div class="animated fadeIn">
              @include('coreui-templates::common.errors')
              <div class="row">
-                 <div class="col-lg-6">
+                 <div class="col-lg-12">
                       <div class="card">
                           <div class="card-header">
                               <i class="fa fa-edit fa-lg"></i>
@@ -20,7 +20,7 @@
                           <div class="card-body">
                               {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'patch']) !!}
 
-                              @include('roles.fields')
+                              @include('roles.fields-edit')
 
                               {!! Form::close() !!}
                             </div>

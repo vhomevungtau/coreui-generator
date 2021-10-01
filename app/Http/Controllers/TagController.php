@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Response;
+use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
+use App\Repositories\TagRepository;
 use App\Http\Requests\CreateTagRequest;
 use App\Http\Requests\UpdateTagRequest;
-use App\Repositories\TagRepository;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use Flash;
-use Response;
 
 class TagController extends AppBaseController
 {
@@ -58,7 +58,7 @@ class TagController extends AppBaseController
 
         $tag = $this->tagRepository->create($input);
 
-        Flash::success('Tag saved successfully.');
+        Flash::success('Thêm thẻ người dùng thành công.');
 
         return redirect(route('tags.index'));
     }
@@ -75,7 +75,7 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Tag not found');
+            Flash::error('Không tìm thấy thẻ');
 
             return redirect(route('tags.index'));
         }
@@ -95,7 +95,7 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Tag not found');
+            Flash::error('Không tìm thấy thẻ');
 
             return redirect(route('tags.index'));
         }
@@ -116,14 +116,14 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Tag not found');
+            Flash::error('Không tìm thấy thẻ');
 
             return redirect(route('tags.index'));
         }
 
         $tag = $this->tagRepository->update($request->all(), $id);
 
-        Flash::success('Tag updated successfully.');
+        Flash::success('Cập nhật thẻ người dùng thành công.');
 
         return redirect(route('tags.index'));
     }
@@ -142,14 +142,14 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Tag not found');
+            Flash::error('Không tìm thấy thẻ');
 
             return redirect(route('tags.index'));
         }
 
         $this->tagRepository->delete($id);
 
-        Flash::success('Tag deleted successfully.');
+        Flash::success('Xóa thẻ người dùng thành công.');
 
         return redirect(route('tags.index'));
     }
