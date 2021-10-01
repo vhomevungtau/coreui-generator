@@ -23,12 +23,13 @@
                 <span>Quyền hạn</span>
             </a>
         </li>
+        <li class="nav-item {{ Request::is('tags*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('tags.index') }}">
+                <i class="nav-icon"></i>
+                <span>Thẻ người dùng</span>
+            </a>
+        </li>
     </ul>
 </li>
 
-<li class="nav-item {{ Request::is('tags*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('tags.index') }}">
-        <i class="nav-icon fa fa-tags"></i>
-        <span>Thẻ người dùng</span>
-    </a>
-</li>
+

@@ -12,17 +12,19 @@
                  @include('coreui-templates::common.errors')
                  <div class="row">
                      <div class="col-lg-12">
-                         <div class="card">
-                             <div class="card-header">
+                         <div class="card card-custome">
+                             {{-- <div class="card-header">
                                  <strong>Details</strong>
                                   <a href="{!! route('users.index') !!}" class="btn btn-ghost-light">Back</a>
-                             </div>
-                             <div class="card-body">
+                             </div> --}}
+                             {{-- <div class="card-body"> --}}
                                  @include('users.show_fields')
-                             </div>
+                             {{-- </div> --}}
                          </div>
                      </div>
                  </div>
           </div>
     </div>
 @endsection
+
+
