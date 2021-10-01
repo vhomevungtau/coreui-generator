@@ -107,8 +107,6 @@
                                 <a href="{{ url('/login') }}" class="btn btn-link px-0">Đăng nhập tài khoản.</a>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

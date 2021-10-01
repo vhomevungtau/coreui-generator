@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permissions;
 use App\Models\Role;
+use App\Models\Permissions;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
@@ -16,20 +17,27 @@ class RoleSeeder extends Seeder
     public function run()
     {
 
-        $role = Role::create([
-            'id'    => 210001,
-            'name' => 'admin',
-            'desc'  => 'Quản trị'
+        DB::table('roles')->insert([
+            [
+                'id'    => 210001,
+                'name' => 'admin',
+                'desc'  => 'Quản trị'
+            ],
+            [
+                'id'    => 210002,
+                'name' => 'user',
+                'desc'  => 'Người dùng'
+            ]
+
         ]);
 
-        // $role = Role::findById('210001');
+
+        $role = Role::findById('210001');
 
         $permissions = Permissions::all();
 
         foreach ($permissions as $permission) {
-            $role->givePermissionTo($permission);
+            $role->permissions()->attach($permission);
         }
-
-
     }
 }

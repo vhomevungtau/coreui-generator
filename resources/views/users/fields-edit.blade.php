@@ -16,12 +16,11 @@
     {!! Form::date('birthday', \Carbon\Carbon::now(), ['class' => 'form-control', 'placeholder' => 'Ngày sinh']) !!}
 </div>
 
-<!-- Role Field -->
 <div class="form-group col-sm-12">
     {{-- <label class="form-label" for="inputState">State</label> --}}
     <select id="role" name="role[]" class="form-control">
         @foreach ($roles as $role)
-            <option value="{{ $role->id }}" @if ($role->id == 210002) selected @endif>{{ $role->desc }}</option>
+            <option value="{{ $role->id }}" @if ($role->id == $userRole) selected @endif>{{ $role->desc }}</option>
         @endforeach
     </select>
 </div>
@@ -33,16 +32,14 @@
 </div>
 
 <!-- Password Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('password', 'Password') !!} --}}
+{{-- <div class="form-group col-sm-12">
     {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mật khẩu']) !!}
-</div>
+</div> --}}
 
 <!-- Confirmation Password Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('password', 'Password Confirmation') !!} --}}
+{{-- <div class="form-group col-sm-12">
     {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Xác nhận mật khẩu']) !!}
-</div>
+</div> --}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

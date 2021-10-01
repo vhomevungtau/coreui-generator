@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Role;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
 class UserController extends AppBaseController
@@ -33,7 +36,9 @@ class UserController extends AppBaseController
     {
         $users = $this->userRepository->all();
 
-        return view('users.index')->with('users', $users);
+        return view('users.index',[
+            'users' =>$users
+        ]);
     }
 
     /**
@@ -43,7 +48,9 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        return view('users.create',[
+            'roles'=> Role::all()
+        ]);
     }
 
     /**
@@ -57,9 +64,14 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        $input['id'] = IdGenerator::generate(['table' => 'users', 'length' => 10, 'prefix' => date('y')]);
         $user = $this->userRepository->create($input);
 
-        Flash::success('User saved successfully.');
+        // Role
+        $user = $this->userRepository->find($input['id']);
+        $user->assignRole($input['role']);
+
+        Flash::success('Thêm người dùng thành công');
 
         return redirect(route('users.index'));
     }
@@ -76,7 +88,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Không tìm thấy người dùng');
 
             return redirect(route('users.index'));
         }
@@ -95,13 +107,22 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
+        $userRole = $user->roles()->pluck('id')[0];
+
+        $roles = Role::all();
+
+
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Không tìm thấy người dùng');
 
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        return view('users.edit',[
+            'user' => $user,
+            'roles' => $roles,
+            'userRole' => $userRole
+        ]);
     }
 
     /**
@@ -117,7 +138,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Không tìm thấy người dùng');
 
             return redirect(route('users.index'));
         }
@@ -129,7 +150,11 @@ class UserController extends AppBaseController
         }
         $user = $this->userRepository->update($input, $id);
 
-        Flash::success('User updated successfully.');
+        // Role
+        $user = $this->userRepository->find($id);
+        $user->syncRoles($input['role']);
+
+        Flash::success('Cập nhật thành công.');
 
         return redirect(route('users.index'));
     }
@@ -148,14 +173,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('Không tìm thấy người dùng');
 
             return redirect(route('users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        Flash::success('User deleted successfully.');
+        Flash::success('Xóa người dùng thành công.');
 
         return redirect(route('users.index'));
     }

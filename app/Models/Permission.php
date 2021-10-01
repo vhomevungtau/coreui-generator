@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
-
-
+use Spatie\Permission\Models\Permission as ModelsPermission;
 
 /**
  * Class Permission
@@ -14,12 +12,12 @@ use Eloquent as Model;
  * @property string $name
  * @property string $desc
  */
-class Permission extends Model
+class Permission extends ModelsPermission
 {
 
 
     public $table = 'permissions';
-    
+
 
 
 
@@ -49,5 +47,5 @@ class Permission extends Model
         'desc' => 'required'
     ];
 
-    
+
 }

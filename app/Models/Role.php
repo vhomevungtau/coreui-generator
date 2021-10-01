@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
-
-
+use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 /**
  * Class Role
@@ -14,14 +14,10 @@ use Eloquent as Model;
  * @property string $name
  * @property string $desc
  */
-class Role extends Model
+class Role extends ModelsRole
 {
 
-
     public $table = 'roles';
-    
-
-
 
     public $fillable = [
         'name',
@@ -49,5 +45,5 @@ class Role extends Model
         'desc' => 'required'
     ];
 
-    
+
 }

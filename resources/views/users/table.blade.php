@@ -13,7 +13,7 @@
                     <td class="text-center">{!! $user->id !!}</td>
                     <td>{!! $user->name !!}</td>
                     <td class="text-center">{!! $user->phone !!}</td>
-                    <td></td>
+                    <td>{{ $user->roles()->pluck('desc')[0] ?? "" }}</td>
                     <td class="text-center">
                         {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

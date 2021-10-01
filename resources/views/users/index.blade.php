@@ -2,29 +2,31 @@
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item">Người dùng</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
-             @include('flash::message')
-             <div class="row">
-                 <div class="col-lg-12">
-                     <div class="card">
-                         <div class="card-header">
-                             <i class="fa fa-align-justify"></i>
-                             Users
-                             <a class="pull-right" href="{!! route('users.create') !!}"><i class="fa fa-plus-square fa-lg"></i></a>
-                         </div>
-                         <div class="card-body">
-                             @include('users.table')
-                              <div class="pull-right mr-3">
+            @include('flash::message')
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-user"></i>
+                            Người dùng
+                            <a class="btn btn-primary pull-right" href="{!! route('users.create') !!}">
+                                Thêm</a>
+                        </div>
 
-                              </div>
-                         </div>
-                     </div>
-                  </div>
-             </div>
-         </div>
+                        <div class="card-body">
+                            @include('users.table')
+                            <div class="pull-right mr-3">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -43,7 +45,7 @@
                     },
                     "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ dòng dữ liệu",
                     "infoEmpty": "",
-                    "lengthMenu":     "Hiển thị _MENU_ dữ liệu",
+                    "lengthMenu": "Hiển thị _MENU_ dữ liệu",
                 },
                 "oLanguage": {
                     "sProcessing": '<span>Please wait ...</span>'
@@ -98,5 +100,3 @@
     </script>
 
 @endpush
-
-
