@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+@section('title','Cập nhật người dùng')
+
 @section('content')
     <ol class="breadcrumb">
           <li class="breadcrumb-item">

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title','Tổng quan')
+
 @section('content')
     <div class="page-title-box">
         <div class="page-title-right">
