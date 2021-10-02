@@ -11,9 +11,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa fa-address-card-o"></i>
+                            <i class="uil-list-ul"></i>
                             Danh sách quyền hạn
-                            <a class="btn btn-primary pull-right" href="{{ route('permissions.create') }}">Thêm</a>
+                            <a class="btn btn-primary pull-right" href="{{ route('admin.permissions.create') }}">Thêm</a>
                         </div>
                         <div class="card-body">
                             @include('permissions.table')
@@ -26,68 +26,3 @@
 @endsection
 
 
-@push('scripts')
-    <script>
-        $(function() {
-            $('#perm-table').DataTable({
-                "language": {
-                    "search": "Tìm:",
-                    "zeroRecords": "Không có dữ liệu",
-                    "paginate": {
-                        "first": "Đầu",
-                        "last": "Cuối",
-                        "next": "Tiếp",
-                        "previous": "Trước"
-                    },
-                    "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ dòng dữ liệu",
-                    "infoEmpty": "",
-                    "lengthMenu": "Hiển thị _MENU_ dữ liệu",
-                },
-                "oLanguage": {
-                    "sProcessing": '<span>Please wait ...</span>'
-                },
-                "pagingType": "simple_numbers",
-                "paging": true,
-                "lengthMenu": [
-                    [10, 25, 50],
-                    [10, 25, 50]
-                ],
-                "processing": false,
-                "serverSide": false,
-                "ordering": true,
-                "columns": [{
-                        "title": "ID",
-                        "data": "id",
-                        "name": "id",
-                        "visible": true,
-                        "searchable": true
-                    },
-                    {
-                        "title": "Quyền hạn",
-                        "data": "name",
-                        "name": "name",
-                        "visible": true,
-                        "searchable": true
-                    },
-                    {
-                        "title": "Mô tả",
-                        "data": "desc",
-                        "name": "desc",
-                        "visible": true,
-                        "searchable": true
-                    },
-                    {
-                        "title": "Hành động",
-                        "data": "action",
-                        "name": "action",
-                        "visible": true,
-                        "searchable": false
-                    },
-                ],
-            });
-        });
-
-
-    </script>
-
-@endpush

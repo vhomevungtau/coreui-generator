@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container-fluid">
-        <div class="animated fadeIn">
-             <div class="row">
+    <div class="page-title-box">
+        <div class="page-title-right">
 
-            </div>
         </div>
+        <h4 class="page-title">Starter</h4>
     </div>
-</div>
 @endsection

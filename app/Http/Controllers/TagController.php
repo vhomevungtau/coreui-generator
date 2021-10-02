@@ -60,7 +60,7 @@ class TagController extends AppBaseController
 
         Flash::success('Thêm thẻ người dùng thành công.');
 
-        return redirect(route('tags.index'));
+        return redirect(route('admin.tags.index'));
     }
 
     /**
@@ -77,7 +77,7 @@ class TagController extends AppBaseController
         if (empty($tag)) {
             Flash::error('Không tìm thấy thẻ');
 
-            return redirect(route('tags.index'));
+            return redirect(route('admin.tags.index'));
         }
 
         return view('tags.show')->with('tag', $tag);
@@ -97,7 +97,7 @@ class TagController extends AppBaseController
         if (empty($tag)) {
             Flash::error('Không tìm thấy thẻ');
 
-            return redirect(route('tags.index'));
+            return redirect(route('admin.tags.index'));
         }
 
         return view('tags.edit')->with('tag', $tag);
@@ -118,14 +118,14 @@ class TagController extends AppBaseController
         if (empty($tag)) {
             Flash::error('Không tìm thấy thẻ');
 
-            return redirect(route('tags.index'));
+            return redirect(route('admin.tags.index'));
         }
 
         $tag = $this->tagRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật thẻ người dùng thành công.');
 
-        return redirect(route('tags.index'));
+        return redirect(route('admin.tags.index'));
     }
 
     /**
@@ -144,13 +144,13 @@ class TagController extends AppBaseController
         if (empty($tag)) {
             Flash::error('Không tìm thấy thẻ');
 
-            return redirect(route('tags.index'));
+            return redirect(route('admin.tags.index'));
         }
 
         $this->tagRepository->delete($id);
 
         Flash::success('Xóa thẻ người dùng thành công.');
 
-        return redirect(route('tags.index'));
+        return redirect(route('admin.tags.index'));
     }
 }

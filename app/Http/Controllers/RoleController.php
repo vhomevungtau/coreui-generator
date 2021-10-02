@@ -6,7 +6,6 @@ use Response;
 use App\Models\Permission;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Repositories\RoleRepository;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -70,7 +69,7 @@ class RoleController extends AppBaseController
 
         Flash::success('Thêm vai trò thành công.');
 
-        return redirect(route('roles.index'));
+        return redirect(route('admin.roles.index'));
     }
 
     /**
@@ -87,7 +86,7 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             Flash::error('Không tìm thấy vai trò');
 
-            return redirect(route('roles.index'));
+            return redirect(route('admin.roles.index'));
         }
 
         return view('roles.show')->with('role', $role);
@@ -111,7 +110,7 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             Flash::error('Không tìm thấy vai trò');
 
-            return redirect(route('roles.index'));
+            return redirect(route('admin.roles.index'));
         }
 
         return view('roles.edit',[
@@ -136,7 +135,7 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             Flash::error('Không tìm thấy vai trò');
 
-            return redirect(route('roles.index'));
+            return redirect(route('admin.roles.index'));
         }
 
         $role = $this->roleRepository->update($request->all(), $id);
@@ -147,7 +146,7 @@ class RoleController extends AppBaseController
 
         Flash::success('Cập nhật vai trò thành công.');
 
-        return redirect(route('roles.index'));
+        return redirect(route('admin.roles.index'));
     }
 
     /**
@@ -166,13 +165,13 @@ class RoleController extends AppBaseController
         if (empty($role)) {
             Flash::error('Không tìm thấy vai trò');
 
-            return redirect(route('roles.index'));
+            return redirect(route('admin.roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
         Flash::success('Xóa vai trò thành công.');
 
-        return redirect(route('roles.index'));
+        return redirect(route('admin.roles.index'));
     }
 }

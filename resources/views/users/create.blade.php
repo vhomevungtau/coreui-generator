@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('users.index') !!}">Người dùng</a>
+         <a href="{{ route('admin.users.index') }}">Người dùng</a>
       </li>
       <li class="breadcrumb-item active">Thêm</li>
     </ol>
@@ -14,11 +14,11 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <i class="fa fa-plus-square-o fa-lg"></i>
+                                <i class="uil-focus-add"></i>
                                 <strong>Thêm người dùng</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'users.store']) !!}
+                                {!! Form::open(['route' => 'admin.users.store']) !!}
 
                                    @include('users.fields')
 

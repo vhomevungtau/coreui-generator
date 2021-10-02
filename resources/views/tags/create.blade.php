@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('tags.index') !!}">Thẻ người dùng</a>
+         <a href="{!! route('admin.tags.index') !!}">Thẻ người dùng</a>
       </li>
       <li class="breadcrumb-item active">Thêm mới</li>
     </ol>
@@ -14,11 +14,11 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <i class="fa fa-plus-square-o fa-lg"></i>
+                                <i class="uil-focus-add"></i>
                                 <strong>Thêm mới thẻ</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'tags.store']) !!}
+                                {!! Form::open(['route' => 'admin.tags.store']) !!}
 
                                    @include('tags.fields')
 

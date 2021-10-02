@@ -63,7 +63,7 @@ class PermissionController extends AppBaseController
 
         Flash::success('Thêm quyền hạn thành công.');
 
-        return redirect(route('permissions.index'));
+        return redirect(route('admin.permissions.index'));
     }
 
     /**
@@ -80,7 +80,7 @@ class PermissionController extends AppBaseController
         if (empty($permission)) {
             Flash::error('Không tìm thấy quyền hạn');
 
-            return redirect(route('permissions.index'));
+            return redirect(route('admin.permissions.index'));
         }
 
         return view('permissions.show')->with('permission', $permission);
@@ -100,7 +100,7 @@ class PermissionController extends AppBaseController
         if (empty($permission)) {
             Flash::error('Không tìm thấy quyền hạn');
 
-            return redirect(route('permissions.index'));
+            return redirect(route('admin.permissions.index'));
         }
 
         return view('permissions.edit')->with('permission', $permission);
@@ -121,14 +121,14 @@ class PermissionController extends AppBaseController
         if (empty($permission)) {
             Flash::error('Không tìm thấy quyền hạnd');
 
-            return redirect(route('permissions.index'));
+            return redirect(route('admin.permissions.index'));
         }
 
         $permission = $this->permissionRepository->update($request->all(), $id);
 
         Flash::success('Cập nhật quyền hạn thành công.');
 
-        return redirect(route('permissions.index'));
+        return redirect(route('admin.permissions.index'));
     }
 
     /**
@@ -147,13 +147,13 @@ class PermissionController extends AppBaseController
         if (empty($permission)) {
             Flash::error('Không tìm thấy quyền hạn');
 
-            return redirect(route('permissions.index'));
+            return redirect(route('admin.permissions.index'));
         }
 
         $this->permissionRepository->delete($id);
 
         Flash::success('Xóa quyền hạn thành công.');
 
-        return redirect(route('permissions.index'));
+        return redirect(route('admin.permissions.index'));
     }
 }

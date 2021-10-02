@@ -1,30 +1,20 @@
 <!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{{ $role->id }}</p>
+<div class="mb-1">
+    {!! Form::label('id', '- ID: ') !!}
+    {{ $role->id }}
 </div>
 
 <!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{{ $role->name }}</p>
+<div class="mb-1">
+    {!! Form::label('name', '- Vai trò: ') !!}
+    {{ $role->name }}
 </div>
 
 <!-- Desc Field -->
-<div class="form-group">
-    {!! Form::label('desc', 'Desc:') !!}
-    <p>{{ $role->desc }}</p>
+<div class="mb-1">
+    {!! Form::label('desc', '- Mô tả: ') !!}
+    {{ $role->desc }}
 </div>
 
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{{ $role->created_at }}</p>
-</div>
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{{ $role->updated_at }}</p>
-</div>
 

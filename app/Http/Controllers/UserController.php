@@ -48,6 +48,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
+        // dd('scscs');
         return view('users.create',[
             'roles'=> Role::all()
         ]);
@@ -73,7 +74,7 @@ class UserController extends AppBaseController
 
         Flash::success('Thêm người dùng thành công');
 
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -87,10 +88,14 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
+        // $user =
+
+        // dd($user);
+
         if (empty($user)) {
             Flash::error('Không tìm thấy người dùng');
 
-            return redirect(route('users.index'));
+            return redirect(route('admin.users.index'));
         }
 
         return view('users.show')->with('user', $user);
@@ -115,7 +120,7 @@ class UserController extends AppBaseController
         if (empty($user)) {
             Flash::error('Không tìm thấy người dùng');
 
-            return redirect(route('users.index'));
+            return redirect(route('admin.users.index'));
         }
 
         return view('users.edit',[
@@ -140,7 +145,7 @@ class UserController extends AppBaseController
         if (empty($user)) {
             Flash::error('Không tìm thấy người dùng');
 
-            return redirect(route('users.index'));
+            return redirect(route('admin.users.index'));
         }
         $input =  $request->all();
         if (!empty($input['password'])) {
@@ -156,7 +161,7 @@ class UserController extends AppBaseController
 
         Flash::success('Cập nhật thành công.');
 
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -175,13 +180,13 @@ class UserController extends AppBaseController
         if (empty($user)) {
             Flash::error('Không tìm thấy người dùng');
 
-            return redirect(route('users.index'));
+            return redirect(route('admin.users.index'));
         }
 
         $this->userRepository->delete($id);
 
         Flash::success('Xóa người dùng thành công.');
 
-        return redirect(route('users.index'));
+        return redirect(route('admin.users.index'));
     }
 }

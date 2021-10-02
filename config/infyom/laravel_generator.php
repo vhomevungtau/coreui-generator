@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'templates'         => 'coreui-templates',
+    'templates'         => 'adminlte-templates',
 
     /*
     |--------------------------------------------------------------------------

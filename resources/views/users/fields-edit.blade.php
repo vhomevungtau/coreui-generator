@@ -1,23 +1,20 @@
 <!-- Name Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('name', 'Name') !!} --}}
+<div class="mb-1 col-sm-12">
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Họ tên']) !!}
 </div>
 
 <!-- Phone Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('name', 'Name') !!} --}}
+<div class="mb-1 col-sm-12">
     {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Điện thoại']) !!}
 </div>
 
 <!-- Birthday Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('name', 'Name') !!} --}}
-    {!! Form::date('birthday', \Carbon\Carbon::now(), ['class' => 'form-control', 'placeholder' => 'Ngày sinh']) !!}
+<div class="mb-1 position-relative" id="datepicker1">
+    <input type="text" name="birthday" value="{{ date('d-m-Y', strtotime($user->birthday)) }}" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control"
+        data-provide="datepicker" data-date-container="#datepicker1">
 </div>
 
-<div class="form-group col-sm-12">
-    {{-- <label class="form-label" for="inputState">State</label> --}}
+<div class="mb-1 col-sm-12">
     <select id="role" name="role[]" class="form-control">
         @foreach ($roles as $role)
             <option value="{{ $role->id }}" @if ($role->id == $userRole) selected @endif>{{ $role->desc }}</option>
@@ -26,8 +23,7 @@
 </div>
 
 <!-- Email Field -->
-<div class="form-group col-sm-12">
-    {{-- {!! Form::label('email', 'Email') !!} --}}
+<div class="mb-1 col-sm-12">
     {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Địa chỉ Email']) !!}
 </div>
 
@@ -48,7 +44,7 @@
             {!! Form::submit('Lưu', ['class' => 'btn btn-primary']) !!}
         </div>
         <div class="col-6 text-right">
-            <a href="{!! route('users.index') !!}" class="btn btn-default">Hủy</a>
+            <a href="{!! route('admin.users.index') !!}" class="btn btn-default">Hủy</a>
         </div>
     </div>
 

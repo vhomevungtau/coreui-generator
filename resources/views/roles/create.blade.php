@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-         <a href="{!! route('roles.index') !!}">Vai trò</a>
+         <a href="{!! route('admin.roles.index') !!}">Vai trò</a>
       </li>
       <li class="breadcrumb-item active">Thêm mới</li>
     </ol>
@@ -14,11 +14,11 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <i class="fa fa-plus-square-o fa-lg"></i>
+                                <i class="uil-focus-add"></i>
                                 <strong>Thêm mới vai trò</strong>
                             </div>
                             <div class="card-body">
-                                {!! Form::open(['route' => 'roles.store']) !!}
+                                {!! Form::open(['route' => 'admin.roles.store']) !!}
 
                                    @include('roles.fields')
 
