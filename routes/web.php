@@ -33,10 +33,17 @@ Route::post(
 // Dashboard
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
 
+    // User manager
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('tags', TagController::class);
 
+    // Setting
+    Route::resource('colors', App\Http\Controllers\ColorController::class);
+
 });
+
+
+

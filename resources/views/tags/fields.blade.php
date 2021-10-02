@@ -4,6 +4,15 @@
     {!! Form::text('name', null, ['class' => 'form-control','placeholder' => 'Thẻ người dùng']) !!}
 </div>
 
+<!-- Color Field -->
+<div class="mb-1">
+    <select class="form-select" name="color" id="color">
+        @foreach ($colors as $value)
+            <option value="{{ $value->name }}" >{{ $value->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 <!-- Submit Field -->
 <div class="mb-1 col-sm-12">
     <button type="submit" class="btn btn-primary">Lưu</button>

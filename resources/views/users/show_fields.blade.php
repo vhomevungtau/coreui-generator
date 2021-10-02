@@ -16,12 +16,22 @@
                     <p class="text-muted font-13 mb-3">
                         Hi I'm Johnathn Nguyễn
                     </p>
-                    <p class="text-muted mb-2 font-13"><strong>Họ tên :</strong> <span class="ms-2">{{ $user->name }}</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Họ tên :</strong> <span
+                            class="ms-2">{{ $user->name }}</span></p>
 
-                    <p class="text-muted mb-2 font-13"><strong>Điện thoại :</strong><span class="ms-2">{{ $user->phone }}</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Điện thoại :</strong><span
+                            class="ms-2">{{ $user->phone }}</span></p>
+
+                    <p class="text-muted mb-2 font-13"><strong>Ngày sinh :</strong><span
+                            class="ms-2">{{ date('d-m-Y', strtotime($user->birthday)) }}</span></p>
 
                     <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span
                             class="ms-2 ">{{ $user->email }}</span></p>
+
+                    <p class="text-muted mb-2 font-13"><strong>Thẻ người dùng :</strong></p>
+                    @foreach ($user->tags as $v)
+                        <span class="badge badge-outline-{{ $v->color }} rounded-pill">{{ $v->name }}</span>
+                    @endforeach
 
                 </div>
 
@@ -168,8 +178,8 @@
                                 <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
                                 <div class="timeline-item-info">
                                     <h5 class="mt-0 mb-1">Graphic Designer</h5>
-                                    <p class="font-14">Coderthemes Design LLP <span
-                                            class="ms-2 font-12">Year: 2010 - 12</span></p>
+                                    <p class="font-14">Coderthemes Design LLP <span class="ms-2 font-12">Year:
+                                            2010 - 12</span></p>
                                     <p class="text-muted mt-2 mb-0 pb-2">The European languages are members of
                                         the same family. Their separate existence is a myth. For science
                                         music sport etc, Europe uses the same vocabulary. The languages
@@ -201,7 +211,7 @@
                                         <a href="#" class="btn btn-sm px-2 font-16 btn-light"><i
                                                 class="mdi mdi-emoticon-outline"></i></a>
                                     </div>
-                                    <button type="submit" class="btn btn-sm btn-dark waves-effect">Post</button>
+                                    <button type="submit" class="btn btn-sm btn-dark waves-effect">Gửi</button>
                                 </div>
                             </form>
                         </div> <!-- end .border-->
@@ -270,8 +280,8 @@
 
                                         <div class="d-flex mt-3">
                                             <a class="pe-2" href="#">
-                                                <img src="{{ asset('images/users/avatar-4.jpg') }}" class="rounded-circle"
-                                                    alt="Generic placeholder image" height="32">
+                                                <img src="{{ asset('images/users/avatar-4.jpg') }}"
+                                                    class="rounded-circle" alt="Generic placeholder image" height="32">
                                             </a>
                                             <div>
                                                 <h5 class="mt-0">Thelma Fridley <small
@@ -313,21 +323,25 @@
 
                     <div class="tab-pane" id="settings">
                         <form>
-                            <h5 class="mb-2 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Thông tin cá nhân
+                            <h5 class="mb-2 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Thông tin cá
+                                nhân
                             </h5>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-1">
                                         <label for="name" class="form-label">Họ tên</label>
-                                        <input type="text" class="form-control" value="{{ $user->name }}" id="name"
-                                            placeholder="Họ tên">
+                                        <input type="text" class="form-control" value="{{ $user->name }}"
+                                            id="name" placeholder="Họ tên">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-1 position-relative" id="datepicker1">
                                         <label for="name" class="form-label">Điện thoại</label>
-                                        <input type="text" name="birthday" value="{{ date('d-m-Y', strtotime($user->birthday)) }}" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control"
-                                            data-provide="datepicker" data-date-container="#datepicker1">
+                                        <input type="text" name="birthday"
+                                            value="{{ date('d-m-Y', strtotime($user->birthday)) }}"
+                                            data-date-format="dd-mm-yyyy" data-date-autoclose="true"
+                                            class="form-control" data-provide="datepicker"
+                                            data-date-container="#datepicker1">
                                     </div>
                                 </div> <!-- end col -->
                             </div> <!-- end row -->
@@ -348,8 +362,8 @@
                                         <label for="email" class="form-label">Địa chỉ Email</label>
                                         <input type="email" class="form-control" id="email"
                                             placeholder="Địa chỉ Emai">
-                                        <span class="form-text text-muted"><small>Nếu bạn muốn thay đổi địa chỉ Email vui lòng <a
-                                                    href="javascript: void(0);">kích</a> ở đây.</small></span>
+                                        <span class="form-text text-muted"><small>Nếu bạn muốn thay đổi địa chỉ Email
+                                                vui lòng <a href="javascript: void(0);">kích</a> ở đây.</small></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -357,7 +371,8 @@
                                         <label for="password" class="form-label">Mật khẩu</label>
                                         <input type="password" class="form-control" id="password"
                                             placeholder="Enter password">
-                                        <span class="form-text text-muted"><small>Nếu bạn muốn thay đổi mật khẩu vui lòng
+                                        <span class="form-text text-muted"><small>Nếu bạn muốn thay đổi mật khẩu vui
+                                                lòng
                                                 <a href="javascript: void(0);">kích</a> ở đây.</small></span>
                                     </div>
                                 </div> <!-- end col -->
@@ -366,7 +381,7 @@
                             {{-- <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building me-1"></i>
                                 Thông tin Công ty</h5>
                             <div class="row"> --}}
-                                {{-- <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="companyname" class="form-label">Tên công ty</label>
                                         <input type="text" class="form-control" id="companyname"
@@ -380,10 +395,11 @@
                                             placeholder="Enter website url">
                                     </div>
                                 </div> <!-- end col -->
-                            </div>  --}}
+                            </div> --}}
                             <!-- end row -->
 
-                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-earth me-1"></i> Mạng xã hội
+                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-earth me-1"></i> Mạng xã
+                                hội
                             </h5>
                             <div class="row">
                                 <div class="col-md-6">

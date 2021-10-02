@@ -15,7 +15,7 @@
                         <div class="card-header">
                             <i class="uil-list-ul"></i>
                             Danh sách vai trò
-                            <a class="btn btn-primary pull-right" href="{{ route('admin.roles.create') }}">
+                            <a class="btn btn-sm btn-primary pull-right" href="{{ route('admin.roles.create') }}">
                                 Thêm</a>
                         </div>
                         <div class="card-body">

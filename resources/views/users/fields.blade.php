@@ -38,6 +38,23 @@
     {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Xác nhận mật khẩu']) !!}
 </div>
 
+<!-- Tag Field -->
+<div class="mb-1 col-sm-6">
+    <strong><h5>THẺ NGƯỜI DÙNG</h5></strong>
+</div>
+
+<div class="mb-1">
+    <div class="row">
+        @foreach ($tags as $value)
+            <div class="mb-1 col-sm-6">
+                <label>{{ Form::checkbox('tag[]', $value->id,false, ['class' => 'name']) }}
+                    {{ $value->name }}</label>
+                <br />
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <!-- Submit Field -->
 <div class="mb-1 col-sm-12">
     <button type="submit" class="btn btn-primary">Lưu</button>

@@ -9,31 +9,29 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
 /**
- * Class Tag
+ * Class Color
  * @package App\Models
- * @version October 1, 2021, 6:45 am UTC
+ * @version October 2, 2021, 10:45 am UTC
  *
- * @property \Illuminate\Database\Eloquent\Collection $users
  * @property string $name
  */
-class Tag extends EloquentModel
+class Color extends EloquentModel
 {
     use SoftDeletes;
 
 
-    public $table = 'tags';
+    public $table = 'colors';
 
 
     protected $dates = ['deleted_at'];
 
-
-
-    public $fillable = [
-        'name',
-        'color'
-    ];
+    public $timestamps = false;
 
     public $incrementing = false;
+
+    public $fillable = [
+        'name'
+    ];
 
     /**
      * The attributes that should be casted to native types.
@@ -42,8 +40,7 @@ class Tag extends EloquentModel
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'color' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -52,23 +49,16 @@ class Tag extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'name' => 'required|unique:tags',
-        'color'=> 'required'
+        'name' => 'required|unique:colors'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     **/
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'user_tag');
-    }
 
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'tags', 'length' => 6, 'prefix' => date('y')]);
+            $model->id = IdGenerator::generate(['table' => 'colors', 'length' => 4, 'prefix' => date('y')]);
         });
     }
+
+
 }

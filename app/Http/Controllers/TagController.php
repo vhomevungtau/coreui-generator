@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Tag;
+use App\Models\Color;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\TagRepository;
@@ -31,8 +33,9 @@ class TagController extends AppBaseController
     {
         $tags = $this->tagRepository->all();
 
-        return view('tags.index')
-            ->with('tags', $tags);
+        return view('tags.index',[
+            'tags'      => $tags
+        ]);
     }
 
     /**
@@ -42,7 +45,9 @@ class TagController extends AppBaseController
      */
     public function create()
     {
-        return view('tags.create');
+        return view('tags.create',[
+            'colors' => Color::all()
+        ]);
     }
 
     /**

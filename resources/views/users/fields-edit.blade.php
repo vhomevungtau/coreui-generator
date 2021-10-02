@@ -27,6 +27,23 @@
     {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Địa chỉ Email']) !!}
 </div>
 
+<!-- Tag Field -->
+<div class="mb-1 col-sm-6">
+    <strong><h5>THẺ NGƯỜI DÙNG</h5></strong>
+</div>
+
+<div class="mb-1">
+    <div class="row">
+        @foreach ($tags as $value)
+            <div class="mb-1 col-sm-6">
+                <label>{{ Form::checkbox('tag[]', $value->id, in_array($value->id, $userTag) ? true : false, ['class' => 'name']) }}
+                    {{ $value->name }}</label>
+                <br />
+            </div>
+        @endforeach
+    </div>
+</div>
+
 <!-- Password Field -->
 {{-- <div class="form-group col-sm-12">
     {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Mật khẩu']) !!}

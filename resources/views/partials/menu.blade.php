@@ -33,8 +33,8 @@
                 </a>
             </li>
 
-            {{-- User manager --}}
-            <li class="side-nav-item">
+             {{-- User manager --}}
+             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
                     aria-controls="sidebarEcommerce" class="side-nav-link">
                     <i class="uil-store"></i>
@@ -60,6 +60,35 @@
                 </div>
             </li>
 
+            {{-- Setting --}}
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
+                    aria-controls="sidebarEcommerce" class="side-nav-link">
+                    <i class="uil uil-server-connection"></i>
+                    <span> Cài đặt </span>
+                    <span class="menu-arrow"></span>
+                </a>
+
+                <div class="collapse" id="sidebarEcommerce">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.colors.index') }}">Màu sắc</a>
+                        </li>
+                        {{-- <li>
+                            <a href="{{ route('admin.roles.index') }}">Vai trò</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.permissions.index') }}">Quyền hạn</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.tags.index') }}">Thẻ người dùng</a>
+                        </li> --}}
+                    </ul>
+                </div>
+            </li>
+
+
+
             {{-- Logout --}}
             <li class="side-nav-item">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -79,3 +108,5 @@
     </div>
     <!-- Sidebar -left -->
 </div>
+
+

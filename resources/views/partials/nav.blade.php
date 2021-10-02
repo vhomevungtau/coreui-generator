@@ -121,8 +121,8 @@
                     <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">Nguyen Vu</span>
-                    <span class="account-position">Founder</span>
+                    <span class="account-user-name">{{ Auth::user()->name }}</span>
+                    <span class="account-position">{{ Auth::user()->roles()->pluck('desc')[0] ?? '' }}</span>
                 </span>
             </a>
 

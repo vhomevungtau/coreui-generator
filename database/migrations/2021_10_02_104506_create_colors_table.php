@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateColorsTable extends Migration
 {
 
     /**
@@ -14,14 +14,11 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('colors', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
-            $table->string('color');
-            $table->timestamps();
             $table->softDeletes();
         });
-
     }
 
     /**
@@ -31,6 +28,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags');
+        Schema::drop('colors');
     }
 }

@@ -15,7 +15,7 @@
                          <div class="card-header">
                              <i class="uil-list-ul"></i>
                              Danh sách thẻ
-                             <a class="btn btn-primary pull-right" href="{{ route('admin.tags.create') }}">Thêm</a>
+                             <a class="btn btn-sm btn-primary pull-right" href="{{ route('admin.tags.create') }}">Thêm</a>
                          </div>
                          <div class="card-body">
                              @include('tags.table')

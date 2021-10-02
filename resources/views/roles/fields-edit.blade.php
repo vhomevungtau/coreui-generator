@@ -14,7 +14,6 @@
     <strong><h5>QUYỀN HẠN CỦA VAI TRÒ</h5></strong>
 </div>
 
-
 <div class="mb-1">
     <div class="row">
         @foreach ($permissions as $value)

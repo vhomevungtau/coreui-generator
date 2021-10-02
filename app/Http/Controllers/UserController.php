@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Tag;
 use App\Models\Role;
+use App\Models\User;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
@@ -11,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\User;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
@@ -37,7 +38,7 @@ class UserController extends AppBaseController
         $users = $this->userRepository->all();
 
         return view('users.index',[
-            'users' =>$users
+            'users' =>$users,
         ]);
     }
 
@@ -48,9 +49,11 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        // dd('scscs');
+        $tags = Tag::all();
+
         return view('users.create',[
-            'roles'=> Role::all()
+            'roles' => Role::all(),
+            'tags'  => $tags
         ]);
     }
 
@@ -71,6 +74,9 @@ class UserController extends AppBaseController
         // Role
         $user = $this->userRepository->find($input['id']);
         $user->assignRole($input['role']);
+
+        // Tag
+        $user->tags()->sync($request->tag);
 
         Flash::success('Thêm người dùng thành công');
 
@@ -112,9 +118,13 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
-        $userRole = $user->roles()->pluck('id')[0];
+        $userRole = $user->roles()->pluck('id','id')->all();
 
         $roles = Role::all();
+
+        $tags = Tag::all();
+
+        $userTag = $user->tags()->pluck('id','id')->all();
 
 
         if (empty($user)) {
@@ -124,9 +134,11 @@ class UserController extends AppBaseController
         }
 
         return view('users.edit',[
-            'user' => $user,
-            'roles' => $roles,
-            'userRole' => $userRole
+            'user'      => $user,
+            'roles'     => $roles,
+            'userRole'  => $userRole,
+            'tags'      => $tags,
+            'userTag'  => $userTag
         ]);
     }
 
@@ -158,6 +170,9 @@ class UserController extends AppBaseController
         // Role
         $user = $this->userRepository->find($id);
         $user->syncRoles($input['role']);
+
+        // Tag
+        $user->tags()->sync($request->tag);
 
         Flash::success('Cập nhật thành công.');
 

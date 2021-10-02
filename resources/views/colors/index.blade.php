@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title','Quyền hạn')
+@section('title','Màu sắc')
 
 @section('content')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Quyền hạn</li>
+        <li class="breadcrumb-item">Màu sắc</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -14,11 +14,11 @@
                     <div class="card">
                         <div class="card-header">
                             <i class="uil-list-ul"></i>
-                            Danh sách quyền hạn
-                            <a class="btn btn-sm btn-primary pull-right" href="{{ route('admin.permissions.create') }}">Thêm</a>
+                            Danh sách màu
+                            <a class="btn btn-sm btn-primary pull-right" href="{{ route('admin.colors.create') }}">Thêm</a>
                         </div>
                         <div class="card-body">
-                            @include('permissions.table')
+                            @include('colors.table')
                         </div>
                     </div>
                 </div>
