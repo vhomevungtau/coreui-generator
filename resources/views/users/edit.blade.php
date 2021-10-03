@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('title','Cập nhật người dùng')
 
 @section('content')

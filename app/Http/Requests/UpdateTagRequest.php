@@ -25,8 +25,10 @@ class UpdateTagRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = Tag::$rules;
-        
-        return $rules;
+
+        return [
+            'name' => 'required|min:3,max:50',
+            'color' => 'required'
+        ];
     }
 }

@@ -52,7 +52,7 @@ class Tag extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'name' => 'required|unique:tags',
+        'name' => 'required|unique:tags,name|min:3,max:50',
         'color'=> 'required'
     ];
 

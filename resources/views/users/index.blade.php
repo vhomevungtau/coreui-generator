@@ -16,7 +16,7 @@
                             <i class="uil-list-ul"></i>
                             Danh sách người dùng
 
-                            <a class="btn btn-sm btn-primary text-end" href="{{ route('admin.users.create') }}">
+                            <a class="btn btn-sm btn-primary btn-rounded text-end" href="{{ route('admin.users.create') }}">
                                 Thêm</a>
                         </div>
 

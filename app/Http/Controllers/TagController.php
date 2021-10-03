@@ -105,7 +105,10 @@ class TagController extends AppBaseController
             return redirect(route('admin.tags.index'));
         }
 
-        return view('tags.edit')->with('tag', $tag);
+        return view('tags.edit',[
+            'colors'    => Color::all(),
+            'tag'       => $tag
+        ]);
     }
 
     /**

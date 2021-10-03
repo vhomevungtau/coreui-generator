@@ -12,19 +12,19 @@
         <div class="p-3">
 
             <!-- Settings -->
-            <h5 class="mt-3">Màu sắc</h5>
+            <h5 class="mt-3">Giao diện</h5>
             <hr class="mt-1">
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light"
                     id="light-mode-check" checked="">
-                <label class="form-check-label" for="light-mode-check">Giao diện sáng</label>
+                <label class="form-check-label" for="light-mode-check">Màu sáng</label>
             </div>
 
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark"
                     id="dark-mode-check">
-                <label class="form-check-label" for="dark-mode-check">Giao diện tối</label>
+                <label class="form-check-label" for="dark-mode-check">Màu tối</label>
             </div>
 
 
@@ -43,7 +43,7 @@
 
 
             <!-- Left Sidebar-->
-            <h5 class="mt-4">Menu</h5>
+            <h5 class="mt-4">Điều hướng</h5>
             <hr class="mt-1">
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="theme" value="default" id="default-check">
@@ -60,6 +60,8 @@
                 <label class="form-check-label" for="dark-check">Tối</label>
             </div>
 
+            <h5 class="mt-4">Dạng điều hướng</h5>
+            <hr class="mt-1">
             <div class="form-check form-switch mb-1">
                 <input class="form-check-input" type="checkbox" name="compact" value="fixed" id="fixed-check"
                     checked="">

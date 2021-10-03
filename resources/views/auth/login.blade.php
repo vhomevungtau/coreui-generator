@@ -1,123 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }} | Login</title>
+    <meta charset="utf-8" />
+    <title>Đăng nhập | VHome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- AdminLTE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css"
-        integrity="sha512-mxrUXSjrxl8vm5GwafxcqTrEwO1/oBNU25l20GODsysHReZo4uhVISzAKzaABH6/tTfAxZrY2FprmeAP5UZY8A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- iCheck -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
-        integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg=="
-        crossorigin="anonymous" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- App css -->
+    <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="{{ asset('css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style" />
 
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
-        </div>
+<body class="loading authentication-bg"
+    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-4 col-lg-5">
+                    <div class="card">
 
-        <!-- /.login-logo -->
-
-        <!-- /.login-box-body -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
-                <form method="post" action="{{ url('/login') }}">
-                    @csrf
-
-                    <div class="input-group mb-3">
-                        <input type="text" name="username" value="{{ old('username') }}" placeholder="Email"
-                            class="form-control @error('username') is-invalid @enderror">
-                        <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                        <!-- Logo -->
+                        <div class="card-header pt-4 pb-4 text-center bg-primary">
+                            <a href="{{ url('/home') }}">
+                                <span><img src="{{ asset('images/logo.png') }}" alt="" height="18"></span>
+                            </a>
                         </div>
-                        @error('username')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
 
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" placeholder="Password"
-                            class="form-control @error('password') is-invalid @enderror">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                        <div class="card-body p-2">
+
+                            <div class="text-center w-75 m-auto">
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">ĐĂNG NHẬP</h4>
                             </div>
-                        </div>
-                        @error('password')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
 
+                            <form method="post" action="{{ url('/login') }}">
+                                @csrf
+
+                                <div class="mb-1">
+                                    <label for="username" class="form-label">Điện thoại / Email</label>
+                                    <input class="form-control" type="text" name="username" id="username" required=""
+                                        placeholder="Điện thoại / Email">
+                                </div>
+                                @error('username')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+
+                                <div class="mb-1">
+                                    <a href="#" class="text-muted float-end"><small>Quên mật khẩu?</small></a>
+                                    <label for="password" class="form-label">Mật khẩu</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            placeholder="Mật khẩu">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @error('password')
+                                    <span class="error invalid-feedback">{{ $message }}</span>
+                                @enderror
+
+                                <div class="mb-1 mb-1">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="remember">
+                                        <label class="form-check-label" for="remember">Ghi nhớ đăng nhập lần sau</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-1 mb-0 text-center">
+                                    <button class="btn btn-primary btn-rounded" type="submit"> Đăng nhập </button>
+                                </div>
+
+                            </form>
+                        </div> <!-- end card-body -->
                     </div>
+                    <!-- end card -->
 
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">Remember Me</label>
-                            </div>
-                        </div>
-
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-
+                    <div class="row mt-3">
+                        <div class="col-12 text-center">
+                            <p class="text-muted">Bạn chưa có tài khoản? <a href="{{ route('register') }}"
+                                    class="text-muted ms-1"><b>Đăng ký</b></a></p>
+                        </div> <!-- end col -->
                     </div>
-                </form>
+                    <!-- end row -->
 
-                <p class="mb-1">
-                    <a href="{{ route('password.request') }}">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-                </p>
+                </div> <!-- end col -->
             </div>
-            <!-- /.login-card-body -->
+            <!-- end row -->
         </div>
-
+        <!-- end container -->
     </div>
-    <!-- /.login-box -->
+    <!-- end page -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous"></script>
+    <footer class="footer footer-alt">
+        2021 © VHome
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
-    </script>
-
-    <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"
-        integrity="sha512-AJUWwfMxFuQLv1iPZOTZX0N/jTCIrLxyZjTRKQostNU71MzZTEPHjajSK20Kj1TwJELpP7gl+ShXw5brpnKwEg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- bundle -->
+    <script src="{{ asset('js/vendor.min.js') }}"></script>
+    <script src="{{ asset('js/app.min.js') }}"></script>
 
 </body>
 

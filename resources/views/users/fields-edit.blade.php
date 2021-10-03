@@ -58,7 +58,7 @@
 <div class="form-group col-sm-12">
     <div class="row">
         <div class="col-6">
-            {!! Form::submit('Lưu', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Lưu', ['class' => 'btn btn-primary btn-rounded']) !!}
         </div>
         <div class="col-6 text-right">
             <a href="{!! route('admin.users.index') !!}" class="btn btn-default">Hủy</a>
