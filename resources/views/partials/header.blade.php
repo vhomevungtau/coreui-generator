@@ -21,4 +21,6 @@
     <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
     <link href="{{ asset('css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style">
 
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>

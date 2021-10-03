@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Response;
-use App\Models\Tag;
 use App\Models\Color;
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\TagRepository;
 use App\Http\Requests\CreateTagRequest;
 use App\Http\Requests\UpdateTagRequest;
 use App\Http\Controllers\AppBaseController;
+use Brian2694\Toastr\Facades\Toastr;
 
 class TagController extends AppBaseController
 {
@@ -63,7 +62,7 @@ class TagController extends AppBaseController
 
         $tag = $this->tagRepository->create($input);
 
-        Flash::success('Thêm thẻ người dùng thành công.');
+        Toastr::success('Thêm thẻ người dùng thành công.');
 
         return redirect(route('admin.tags.index'));
     }
@@ -80,7 +79,7 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Không tìm thấy thẻ');
+            Toastr::error('Không tìm thấy thẻ');
 
             return redirect(route('admin.tags.index'));
         }
@@ -100,7 +99,7 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Không tìm thấy thẻ');
+            Toastr::error('Không tìm thấy thẻ');
 
             return redirect(route('admin.tags.index'));
         }
@@ -124,14 +123,14 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Không tìm thấy thẻ');
+            Toastr::error('Không tìm thấy thẻ');
 
             return redirect(route('admin.tags.index'));
         }
 
         $tag = $this->tagRepository->update($request->all(), $id);
 
-        Flash::success('Cập nhật thẻ người dùng thành công.');
+        Toastr::success('Cập nhật thẻ người dùng thành công.');
 
         return redirect(route('admin.tags.index'));
     }
@@ -150,14 +149,14 @@ class TagController extends AppBaseController
         $tag = $this->tagRepository->find($id);
 
         if (empty($tag)) {
-            Flash::error('Không tìm thấy thẻ');
+            Toastr::error('Không tìm thấy thẻ');
 
             return redirect(route('admin.tags.index'));
         }
 
         $this->tagRepository->delete($id);
 
-        Flash::success('Xóa thẻ người dùng thành công.');
+        Toastr::success('Xóa thẻ người dùng thành công.');
 
         return redirect(route('admin.tags.index'));
     }

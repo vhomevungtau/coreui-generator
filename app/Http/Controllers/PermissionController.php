@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Response;
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\PermissionRepository;
 use App\Http\Controllers\AppBaseController;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Http\Requests\CreatePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class PermissionController extends AppBaseController
 {
@@ -57,11 +57,9 @@ class PermissionController extends AppBaseController
     {
         $input = $request->all();
 
-        $input['id'] = IdGenerator::generate(['table' => 'permissions', 'length' => 6, 'prefix' => date('y')]);
-
         $permission = $this->permissionRepository->create($input);
 
-        Flash::success('Thêm quyền hạn thành công.');
+        Toastr::success('Thêm quyền hạn thành công.');
 
         return redirect(route('admin.permissions.index'));
     }
@@ -78,7 +76,7 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Không tìm thấy quyền hạn');
+            Toastr::error('Không tìm thấy quyền hạn');
 
             return redirect(route('admin.permissions.index'));
         }
@@ -98,7 +96,7 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Không tìm thấy quyền hạn');
+            Toastr::error('Không tìm thấy quyền hạn');
 
             return redirect(route('admin.permissions.index'));
         }
@@ -119,14 +117,14 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Không tìm thấy quyền hạnd');
+            Toastr::error('Không tìm thấy quyền hạnd');
 
             return redirect(route('admin.permissions.index'));
         }
 
         $permission = $this->permissionRepository->update($request->all(), $id);
 
-        Flash::success('Cập nhật quyền hạn thành công.');
+        Toastr::success('Cập nhật quyền hạn thành công.');
 
         return redirect(route('admin.permissions.index'));
     }
@@ -145,14 +143,14 @@ class PermissionController extends AppBaseController
         $permission = $this->permissionRepository->find($id);
 
         if (empty($permission)) {
-            Flash::error('Không tìm thấy quyền hạn');
+            Toastr::error('Không tìm thấy quyền hạn');
 
             return redirect(route('admin.permissions.index'));
         }
 
         $this->permissionRepository->delete($id);
 
-        Flash::success('Xóa quyền hạn thành công.');
+        Toastr::success('Xóa quyền hạn thành công.');
 
         return redirect(route('admin.permissions.index'));
     }

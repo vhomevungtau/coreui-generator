@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Response;
 use App\Models\Permission;
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\RoleRepository;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Http\Controllers\AppBaseController;
+use Brian2694\Toastr\Facades\Toastr;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class RoleController extends AppBaseController
@@ -63,11 +63,9 @@ class RoleController extends AppBaseController
     {
         $input = $request->all();
 
-        $input['id'] = IdGenerator::generate(['table' => 'roles', 'length' => 6, 'prefix' => date('y')]);
-
         $role = $this->roleRepository->create($input);
 
-        Flash::success('Thêm vai trò thành công.');
+        Toastr::success('Thêm vai trò thành công.');
 
         return redirect(route('admin.roles.index'));
     }
@@ -84,7 +82,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Không tìm thấy vai trò');
+            Toastr::error('Không tìm thấy vai trò');
 
             return redirect(route('admin.roles.index'));
         }
@@ -108,7 +106,7 @@ class RoleController extends AppBaseController
         $permissions = Permission::all();
 
         if (empty($role)) {
-            Flash::error('Không tìm thấy vai trò');
+            Toastr::error('Không tìm thấy vai trò');
 
             return redirect(route('admin.roles.index'));
         }
@@ -133,7 +131,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Không tìm thấy vai trò');
+            Toastr::error('Không tìm thấy vai trò');
 
             return redirect(route('admin.roles.index'));
         }
@@ -144,7 +142,7 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
         $role->syncPermissions($request->permission);
 
-        Flash::success('Cập nhật vai trò thành công.');
+        Toastr::success('Cập nhật vai trò thành công.');
 
         return redirect(route('admin.roles.index'));
     }
@@ -163,14 +161,14 @@ class RoleController extends AppBaseController
         $role = $this->roleRepository->find($id);
 
         if (empty($role)) {
-            Flash::error('Không tìm thấy vai trò');
+            Toastr::error('Không tìm thấy vai trò');
 
             return redirect(route('admin.roles.index'));
         }
 
         $this->roleRepository->delete($id);
 
-        Flash::success('Xóa vai trò thành công.');
+        Toastr::success('Xóa vai trò thành công.');
 
         return redirect(route('admin.roles.index'));
     }

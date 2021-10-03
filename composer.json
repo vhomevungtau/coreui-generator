@@ -9,10 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "brian2694/laravel-toastr": "^5.56",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "haruncpi/laravel-id-generator": "^1.0",
+        "infyomlabs/adminlte-templates": "^3.0",
         "infyomlabs/coreui-templates": "8.0.x-dev",
         "infyomlabs/generator-builder": "dev-master",
         "infyomlabs/laravel-generator": "8.0.x-dev",
@@ -20,8 +22,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "3.0",
         "laravelcollective/html": "^6.2",
-        "spatie/laravel-permission": "^5.1",
-        "infyomlabs/adminlte-templates": "^3.0"
+        "spatie/laravel-permission": "^5.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

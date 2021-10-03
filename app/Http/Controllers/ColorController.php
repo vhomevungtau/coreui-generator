@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Response;
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\ColorRepository;
 use App\Http\Requests\CreateColorRequest;
 use App\Http\Requests\UpdateColorRequest;
 use App\Http\Controllers\AppBaseController;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ColorController extends AppBaseController
 {
@@ -58,7 +58,7 @@ class ColorController extends AppBaseController
 
         $color = $this->colorRepository->create($input);
 
-        Flash::success('Color saved successfully.');
+        Toastr::success('Color saved successfully.');
 
         return redirect(route('admin.colors.index'));
     }
@@ -75,7 +75,7 @@ class ColorController extends AppBaseController
         $color = $this->colorRepository->find($id);
 
         if (empty($color)) {
-            Flash::error('Color not found');
+            Toastr::error('Color not found');
 
             return redirect(route('admin.colors.index'));
         }
@@ -95,7 +95,7 @@ class ColorController extends AppBaseController
         $color = $this->colorRepository->find($id);
 
         if (empty($color)) {
-            Flash::error('Color not found');
+            Toastr::error('Color not found');
 
             return redirect(route('admin.colors.index'));
         }
@@ -116,14 +116,14 @@ class ColorController extends AppBaseController
         $color = $this->colorRepository->find($id);
 
         if (empty($color)) {
-            Flash::error('Color not found');
+            Toastr::error('Color not found');
 
             return redirect(route('admin.colors.index'));
         }
 
         $color = $this->colorRepository->update($request->all(), $id);
 
-        Flash::success('Color updated successfully.');
+        Toastr::success('Color updated successfully.');
 
         return redirect(route('admin.colors.index'));
     }
@@ -142,14 +142,14 @@ class ColorController extends AppBaseController
         $color = $this->colorRepository->find($id);
 
         if (empty($color)) {
-            Flash::error('Color not found');
+            Toastr::error('Color not found');
 
             return redirect(route('admin.colors.index'));
         }
 
         $this->colorRepository->delete($id);
 
-        Flash::success('Color deleted successfully.');
+        Toastr::success('Color deleted successfully.');
 
         return redirect(route('admin.colors.index'));
     }

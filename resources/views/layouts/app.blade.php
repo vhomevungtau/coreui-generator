@@ -64,6 +64,7 @@
 
     <!-- third party js -->
     {{-- <script src="https:////cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
@@ -77,9 +78,15 @@
     <script src="{{ asset('js/dataTables.select.min.js') }}"></script>
     <!-- third party js ends -->
 
+
+
     <!-- demo app -->
     <script src="{{ asset('js/demo.datatable-init.js') }}"></script>
     <!-- end demo js-->
+
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+    {!! Toastr::message() !!}
 
     <script>
         @stack('scripts')

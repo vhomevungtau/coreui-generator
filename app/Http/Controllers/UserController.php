@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Response;
 use App\Models\Tag;
 use App\Models\Role;
-use App\Models\User;
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -78,7 +77,7 @@ class UserController extends AppBaseController
         // Tag
         $user->tags()->sync($request->tag);
 
-        Flash::success('Thêm người dùng thành công');
+        Toastr::success('Thêm người dùng thành công');
 
         return redirect(route('admin.users.index'));
     }
@@ -99,7 +98,7 @@ class UserController extends AppBaseController
         // dd($user);
 
         if (empty($user)) {
-            Flash::error('Không tìm thấy người dùng');
+            Toastr::error('Không tìm thấy người dùng');
 
             return redirect(route('admin.users.index'));
         }
@@ -128,7 +127,7 @@ class UserController extends AppBaseController
 
 
         if (empty($user)) {
-            Flash::error('Không tìm thấy người dùng');
+            Toastr::error('Không tìm thấy người dùng');
 
             return redirect(route('admin.users.index'));
         }
@@ -155,7 +154,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('Không tìm thấy người dùng');
+            Toastr::error('Không tìm thấy người dùng');
 
             return redirect(route('admin.users.index'));
         }
@@ -174,7 +173,7 @@ class UserController extends AppBaseController
         // Tag
         $user->tags()->sync($request->tag);
 
-        Flash::success('Cập nhật thành công.');
+        Toastr::success('Cập nhật thành công.');
 
         return redirect(route('admin.users.index'));
     }
@@ -193,14 +192,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('Không tìm thấy người dùng');
+            Toastr::error('Không tìm thấy người dùng');
 
             return redirect(route('admin.users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        Flash::success('Xóa người dùng thành công.');
+        Toastr::success('Xóa người dùng thành công.');
 
         return redirect(route('admin.users.index'));
     }
