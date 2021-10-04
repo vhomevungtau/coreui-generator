@@ -8,8 +8,7 @@
                 <h4 class="mb-0 mt-2">{{ $user->name }}</h4>
                 <p class="text-muted font-14">Founder</p>
 
-                <button type="button" class="btn btn-success btn-sm mb-2">Theo dõi</button>
-                <button type="button" class="btn btn-danger btn-sm mb-2">Tin nhắn</button>
+                <button type="button" class="btn btn-success btn-sm mb-2">Nhắn tin</button>
 
                 <div class="text-start mt-3">
                     <h4 class="font-13 text-uppercase">Giới thiệu</h4>
@@ -47,76 +46,6 @@
                 </ul>
             </div> <!-- end card-body -->
         </div> <!-- end card -->
-
-        <!-- Messages-->
-        {{-- <div class="card">
-            <div class="card-body">
-                <div class="dropdown float-end">
-                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="mdi mdi-dots-vertical"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                    </div>
-                </div>
-                <h4 class="header-title mb-3">Messages</h4>
-
-                <div class="inbox-widget">
-                    <div class="inbox-item">
-                        <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle"
-                                alt=""></div>
-                        <p class="inbox-item-author">Tomaslau</p>
-                        <p class="inbox-item-text">I've finished it! See you so...</p>
-                        <p class="inbox-item-date">
-                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                    </div>
-                    <div class="inbox-item">
-                        <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle"
-                                alt=""></div>
-                        <p class="inbox-item-author">Stillnotdavid</p>
-                        <p class="inbox-item-text">This theme is awesome!</p>
-                        <p class="inbox-item-date">
-                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                    </div>
-                    <div class="inbox-item">
-                        <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle"
-                                alt=""></div>
-                        <p class="inbox-item-author">Kurafire</p>
-                        <p class="inbox-item-text">Nice to meet you</p>
-                        <p class="inbox-item-date">
-                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                    </div>
-
-                    <div class="inbox-item">
-                        <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle"
-                                alt=""></div>
-                        <p class="inbox-item-author">Shahedk</p>
-                        <p class="inbox-item-text">Hey! there I'm available...</p>
-                        <p class="inbox-item-date">
-                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                    </div>
-                    <div class="inbox-item">
-                        <div class="inbox-item-img"><img src="assets/images/users/avatar-6.jpg" class="rounded-circle"
-                                alt=""></div>
-                        <p class="inbox-item-author">Adhamdannaway</p>
-                        <p class="inbox-item-text">This theme is awesome!</p>
-                        <p class="inbox-item-date">
-                            <a href="#" class="btn btn-sm btn-link text-info font-13"> Reply </a>
-                        </p>
-                    </div>
-                </div> <!-- end inbox-widget -->
-            </div> <!-- end card-body-->
-        </div>
-        <!-- end card--> --}}
-
     </div> <!-- end col-->
 
     <div class="col-xl-8 col-lg-7">
@@ -124,27 +53,21 @@
             <div class="card-body">
                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                     <li class="nav-item">
-                        <a href="#aboutme" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
-                            Tiểu sử
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#timeline" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
-                            Nhật ký
+                        <a href="#aboutme" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
+                            Thông tin
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
-                            Cài đặt
+                            Tài khoản
                         </a>
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane" id="aboutme">
-
+                    <div class="tab-pane show active" id="aboutme">
                         {{-- Tiểu sử --}}
                         <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>
-                            Experience</h5>
+                            Lịch sử trị liệu</h5>
 
                         <div class="timeline-alt pb-0">
                             <div class="timeline-item">
@@ -189,137 +112,8 @@
 
                         </div>
                         <!-- end timeline -->
-
                     </div> <!-- end tab-pane -->
-                    <!-- end about me section content -->
 
-                    <div class="tab-pane show active" id="timeline">
-
-                        <!-- comment box -->
-                        <div class="border rounded mt-2 mb-3">
-                            <form action="#" class="comment-area-box">
-                                <textarea rows="3" class="form-control border-0 resize-none"
-                                    placeholder="Bạn đang nghĩ gì...."></textarea>
-                                <div class="p-2 bg-light d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <a href="#" class="btn btn-sm px-2 font-16 btn-light"><i
-                                                class="mdi mdi-account-circle"></i></a>
-                                        <a href="#" class="btn btn-sm px-2 font-16 btn-light"><i
-                                                class="mdi mdi-map-marker"></i></a>
-                                        <a href="#" class="btn btn-sm px-2 font-16 btn-light"><i
-                                                class="mdi mdi-camera"></i></a>
-                                        <a href="#" class="btn btn-sm px-2 font-16 btn-light"><i
-                                                class="mdi mdi-emoticon-outline"></i></a>
-                                    </div>
-                                    <button type="submit" class="btn btn-sm btn-dark waves-effect">Gửi</button>
-                                </div>
-                            </form>
-                        </div> <!-- end .border-->
-                        <!-- end comment box -->
-
-                        <!-- Story Box-->
-                        <div class="border border-light rounded p-2 mb-3">
-                            <div class="d-flex">
-                                <img class="me-2 rounded-circle" src="{{ asset('images/users/avatar-3.jpg') }}"
-                                    alt="Generic placeholder image" height="32">
-                                <div>
-                                    <h5 class="m-0">Jeremy Tomlinson</h5>
-                                    <p class="text-muted"><small>about 2 minuts ago</small></p>
-                                </div>
-                            </div>
-                            <p>Story based around the idea of time lapse, animation to post soon!</p>
-
-                            <img src="{{ asset('images/small/small-1.jpg') }}" alt="post-img" class="rounded me-1"
-                                height="60">
-                            <img src="{{ asset('images/small/small-2.jpg') }}" alt="post-img" class="rounded me-1"
-                                height="60">
-                            <img src="{{ asset('images/small/small-3.jpg') }}" alt="post-img" class="rounded"
-                                height="60">
-
-                            <div class="mt-2">
-                                <a href="javascript: void(0);" class="btn btn-sm btn-link text-muted"><i
-                                        class="mdi mdi-reply"></i> Trả lời</a>
-                                <a href="javascript: void(0);" class="btn btn-sm btn-link text-muted"><i
-                                        class="mdi mdi-heart-outline"></i> Thích</a>
-                                <a href="javascript: void(0);" class="btn btn-sm btn-link text-muted"><i
-                                        class="mdi mdi-share-variant"></i> Chia sẽ</a>
-                            </div>
-                        </div>
-
-                        <!-- Story Box-->
-                        <div class="border border-light rounded p-2 mb-3">
-                            <div class="d-flex">
-                                <img class="me-2 rounded-circle" src="{{ asset('images/users/avatar-4.jpg') }}"
-                                    alt="Generic placeholder image" height="32">
-                                <div>
-                                    <h5 class="m-0">Thelma Fridley</h5>
-                                    <p class="text-muted"><small>about 1 hour ago</small></p>
-                                </div>
-                            </div>
-                            <div class="font-16 text-center fst-italic text-dark">
-                                <i class="mdi mdi-format-quote-open font-20"></i> Cras sit amet nibh libero, in
-                                gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                                purus odio, vestibulum in vulputate at, tempus viverra turpis. Duis
-                                sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper
-                                porta. Mauris massa.
-                            </div>
-
-                            <div class="mx-n2 p-2 mt-3 bg-light">
-                                <div class="d-flex">
-                                    <img class="me-2 rounded-circle" src="{{ asset('images/users/avatar-3.jpg') }}"
-                                        alt="Generic placeholder image" height="32">
-                                    <div>
-                                        <h5 class="mt-0">Jeremy Tomlinson <small class="text-muted">3
-                                                hours ago</small></h5>
-                                        Nice work, makes me think of The Money Pit.
-
-                                        <br>
-                                        <a href="javascript: void(0);"
-                                            class="text-muted font-13 d-inline-block mt-2"><i
-                                                class="mdi mdi-reply"></i> Trả lời</a>
-
-                                        <div class="d-flex mt-3">
-                                            <a class="pe-2" href="#">
-                                                <img src="{{ asset('images/users/avatar-4.jpg') }}"
-                                                    class="rounded-circle" alt="Generic placeholder image" height="32">
-                                            </a>
-                                            <div>
-                                                <h5 class="mt-0">Thelma Fridley <small
-                                                        class="text-muted">5 hours ago</small></h5>
-                                                i'm in the middle of a timelapse animation myself! (Very different
-                                                though.) Awesome stuff.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex mt-2">
-                                    <a class="pe-2" href="#">
-                                        <img src="{{ asset('images/users/avatar-1.jpg') }}" class="rounded-circle"
-                                            alt="Generic placeholder image" height="32">
-                                    </a>
-                                    <div class="w-100">
-                                        <input type="text" id="simpleinput"
-                                            class="form-control border-0 form-control-sm" placeholder="Add comment">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-2">
-                                <a href="javascript: void(0);" class="btn btn-sm btn-link text-danger"><i
-                                        class="mdi mdi-heart"></i> Thích (28)</a>
-                                <a href="javascript: void(0);" class="btn btn-sm btn-link text-muted"><i
-                                        class="mdi mdi-share-variant"></i> Chia sẽ</a>
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <a href="javascript:void(0);" class="text-danger"><i
-                                    class="mdi mdi-spin mdi-loading me-1"></i> Load more </a>
-                        </div>
-
-                    </div>
-                    <!-- end timeline content-->
 
                     <div class="tab-pane" id="settings">
                         <form>

@@ -63,29 +63,29 @@
     <script src="{{ asset('js/app.min.js') }}"></script>
 
     <!-- third party js -->
-    {{-- <script src="https:////cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.js') }}"></script>
     <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('js/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.checkboxes.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/buttons.bootstrap5.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/buttons.html5.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/buttons.flash.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/buttons.print.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/dataTables.keyTable.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/dataTables.select.min.js') }}"></script> --}}
     <!-- third party js ends -->
 
-
-
+    {{-- <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script> --}}
+    {{-- <script src="{{ asset('js/demo.customers.js') }}"></script> --}}
     <!-- demo app -->
     <script src="{{ asset('js/demo.datatable-init.js') }}"></script>
+
     <!-- end demo js-->
 
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
     {!! Toastr::message() !!}
 
     <script>

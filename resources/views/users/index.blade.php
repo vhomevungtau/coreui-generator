@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Người dùng')
+@section('title', 'Người dùng')
 
 @section('content')
     <ol class="breadcrumb">
@@ -13,11 +13,27 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <i class="uil-list-ul"></i>
-                            Danh sách người dùng
+                            {{-- Custome --}}
+                            <div class="row mb-2">
+                                {{-- Add button --}}
+                                <div class="col-sm-4">
+                                    <a class="btn btn-sm btn-primary btn-rounded text-end"
+                                        href="{{ route('admin.users.create') }}">
+                                        <i class="mdi mdi-plus-circle me-2"></i> Thêm</a>
+                                </div>
+                                {{-- Button right --}}
+                                <div class="col-sm-8">
+                                    <div class="text-sm-end">
+                                        <a type="button" class="btn btn-light mb-2 me-1"><i class="mdi mdi-file-excel"></i> Excel</a>
+                                        <a type="button" class="btn btn-light mb-2"><i class="mdi mdi-file-pdf"></i> Pdf</a>
+                                        <a type="button" class="btn btn-light mb-2 me-1"><i class="mdi mdi-database-import"></i> Nhập</a>
+                                        <a type="button" class="btn btn-light mb-2"><i class="mdi mdi-database-export"></i> Xuất</a>
+                                    </div>
+                                </div><!-- end col-->
+                            </div>
 
-                            <a class="btn btn-sm btn-primary btn-rounded text-end" href="{{ route('admin.users.create') }}">
-                                Thêm</a>
+
+
                         </div>
 
                         <div class="card-body">

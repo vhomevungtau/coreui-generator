@@ -19,7 +19,7 @@ class UserAdminSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'id' => 2100000001,
+            'id' => 210001,
             'name'=>'Nguyễn Văn Vũ',
             'phone'=>'0346486884',
             'email'=>'vhomevungtau@gmail.com',

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Màu sắc')
+@section('title', 'Màu sắc')
 
 @section('content')
     <ol class="breadcrumb">
@@ -15,7 +15,9 @@
                         <div class="card-header">
                             <i class="uil-list-ul"></i>
                             Danh sách màu
-                            <a class="btn btn-sm btn-primary btn-rounded pull-right" href="{{ route('admin.colors.create') }}">Thêm</a>
+                            <a class="btn btn-sm btn-primary btn-rounded pull-right"
+                                href="{{ route('admin.colors.create') }}">Thêm</a>
+
                         </div>
                         <div class="card-body">
                             @include('colors.table')

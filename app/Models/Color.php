@@ -56,7 +56,7 @@ class Color extends EloquentModel
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'colors', 'length' => 4, 'prefix' => date('y')]);
+            $model->id = IdGenerator::generate(['table' => 'colors', 'length' => 6, 'prefix' => date('y')]);
         });
     }
 

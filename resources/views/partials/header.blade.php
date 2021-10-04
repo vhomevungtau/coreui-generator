@@ -11,10 +11,8 @@
     <!-- third party css -->
     <link href="{{ asset('css/dataTables.bootstrap5.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/select.bootstrap5.css') }}" rel="stylesheet" type="text/css">
-    {{-- <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"> --}}
     <!-- third party css end -->
+    <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" />
 
     <!-- App css -->
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css">

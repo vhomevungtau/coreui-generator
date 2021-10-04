@@ -1,22 +1,22 @@
 <div class="leftside-menu">
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-light">
+    <a href="{{ route('admin.index') }}" class="logo text-center logo-light">
         <span class="logo-lg">
-            <img src="{{ asset('images/logo.png') }}" alt="" height="16">
+            <img src="{{ asset('images/logosite.png') }}" alt="" height="22">
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('images/logo_sm.png') }}" alt="" height="16">
+            <img src="{{ asset('images/spa.png') }}" alt="" height="16">
         </span>
     </a>
 
     <!-- LOGO -->
-    <a href="index.html" class="logo text-center logo-dark">
+    <a href="{{ route('admin.index') }}" class="logo text-center logo-dark">
         <span class="logo-lg">
-            <img src="{{ asset('images/logo-dark.png') }}" alt="" height="16">
+            <img src="{{ asset('images/logosite.png') }}" alt="" height="22">
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('images/logo_sm_dark.png') }}" alt="" height="16">
+            <img src="{{ asset('images/spa.png') }}" alt="" height="16">
         </span>
     </a>
 
@@ -27,7 +27,7 @@
 
             {{-- Dashboard --}}
             <li class="side-nav-item">
-                <a href="apps-calendar.html" class="side-nav-link">
+                <a href="{{ route('admin.index') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Tổng quan </span>
                 </a>
