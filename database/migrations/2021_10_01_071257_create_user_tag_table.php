@@ -14,8 +14,8 @@ class CreateUserTagTable extends Migration
     public function up()
     {
         Schema::create('user_tag', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('tag_id');
+            $table->bigIncrements('user_id')->unsigned();
+            $table->bigInteger('tag_id')->unsigned();
 
             $table->foreign('user_id')
                 ->references('id')
@@ -26,8 +26,6 @@ class CreateUserTagTable extends Migration
                 ->references('id')
                 ->on('tags')
                 ->onDelete('cascade');
-
-            $table->primary(['user_id','tag_id']);
         });
     }
 

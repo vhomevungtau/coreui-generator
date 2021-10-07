@@ -43,7 +43,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     // Setting
     Route::resource('colors', App\Http\Controllers\ColorController::class);
 
+    // Product manager
+    Route::resource('products', App\Http\Controllers\ProductController::class);
+    Route::resource('prices', App\Http\Controllers\PriceController::class);
+    // Route::resource('statuses', App\Http\Controllers\StatusController::class);
+    Route::resource('orders', App\Http\Controllers\OrderController::class);
+    Route::resource('themes', App\Http\Controllers\ThemeController::class);
+
 });
+
+
+
 
 
 

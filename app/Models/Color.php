@@ -17,13 +17,8 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  */
 class Color extends EloquentModel
 {
-    use SoftDeletes;
-
 
     public $table = 'colors';
-
-
-    protected $dates = ['deleted_at'];
 
     public $timestamps = false;
 

@@ -27,9 +27,9 @@
                     <div class="card">
 
                         <!-- Logo -->
-                        <div class="card-header pt-4 pb-4 text-center bg-primary">
-                            <a href="{{ url('/home') }}">
-                                <span><img src="{{ asset('images/logo.png') }}" alt="" height="18"></span>
+                        <div class="card-header pt-3 pb-3 text-center bg-primary">
+                            <a href="{{ url('/') }}">
+                                <span><img src="{{ asset('images/logosite.png') }}" alt="" height="30"></span>
                             </a>
                         </div>
 

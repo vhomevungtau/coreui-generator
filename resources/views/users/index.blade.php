@@ -22,14 +22,15 @@
                                         <i class="mdi mdi-plus-circle me-2"></i> Thêm</a>
                                 </div>
                                 {{-- Button right --}}
-                                <div class="col-sm-8">
+                                {{-- <div class="col-sm-8">
                                     <div class="text-sm-end">
                                         <a type="button" class="btn btn-light mb-2 me-1"><i class="mdi mdi-file-excel"></i> Excel</a>
                                         <a type="button" class="btn btn-light mb-2"><i class="mdi mdi-file-pdf"></i> Pdf</a>
                                         <a type="button" class="btn btn-light mb-2 me-1"><i class="mdi mdi-database-import"></i> Nhập</a>
                                         <a type="button" class="btn btn-light mb-2"><i class="mdi mdi-database-export"></i> Xuất</a>
                                     </div>
-                                </div><!-- end col-->
+                                </div>
+                                <!-- end col--> --}}
                             </div>
 
 

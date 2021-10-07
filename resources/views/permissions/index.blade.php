@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Quyền hạn')
+@section('title', 'Quyền hạn')
 
 @section('content')
     <ol class="breadcrumb">
@@ -13,9 +13,12 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <i class="uil-list-ul"></i>
-                            Danh sách quyền hạn
-                            <a class="btn btn-sm btn-primary btn-rounded pull-right" href="{{ route('admin.permissions.create') }}">Thêm</a>
+                            {{-- Add button --}}
+                            <div class="col-sm-4">
+                                <a class="btn btn-sm btn-primary btn-rounded text-end"
+                                    href="{{ route('admin.permissions.create') }}">
+                                    <i class="mdi mdi-plus-circle me-2"></i> Thêm</a>
+                            </div>
                         </div>
                         <div class="card-body">
                             @include('permissions.table')

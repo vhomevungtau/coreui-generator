@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Carbon\Carbon;
 use App\Models\Role;
+use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,13 @@ class UserAdminSeeder extends Seeder
             'created_at' => Carbon::now(),
         ]);
 
-        $role = Role::findById(210001);
+        $theme = Theme::create([
+            'theme'     => 1,
+            'user_id'   => 210001,
+            'sidebar'   => 'dark',
+        ]);
+
+        $role = Role::findById(101);
 
         $user->assignRole($role);
 

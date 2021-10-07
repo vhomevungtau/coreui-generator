@@ -14,6 +14,7 @@
         data-provide="datepicker" data-date-container="#datepicker1">
 </div>
 
+{{-- Role --}}
 <div class="mb-1 col-sm-12">
     <select id="role" name="role[]" class="form-control">
         @foreach ($roles as $role)

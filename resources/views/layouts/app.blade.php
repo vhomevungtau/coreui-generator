@@ -4,16 +4,18 @@
 @include('partials.header')
 
 <body class="loading"
-    data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    data-layout-config='{
+    "leftSideBarTheme": "{{ Auth::user()->theme->sidebar }}",
+    "layoutBoxed": {{ Auth::user()->theme->option == 1 ? "true" : "false" }},
+    "leftSidebarCondensed": {{ Auth::user()->theme->option == 2 ? "true" : "false" }},
+    "leftSidebarScrollable": false,
+    "darkMode": {{ Auth::user()->theme->theme == 1 ? "true" : "false" }},
+    "showRightSidebarOnStart": false}'>
     <!-- Begin page -->
     <div class="wrapper">
         <!-- ========== Left Sidebar Start ========== -->
         @include('partials.menu')
         <!-- Left Sidebar End -->
-
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
 
         <div class="content-page">
             <div class="content">
@@ -42,21 +44,8 @@
 
         </div>
 
-        <!-- ============================================================== -->
-        <!-- End Page content -->
-        <!-- ============================================================== -->
-
-
     </div>
     <!-- END wrapper -->
-
-
-    <!-- Right Sidebar -->
-    @include('partials.right')
-
-    <div class="rightbar-overlay"></div>
-    <!-- /End-bar -->
-
 
     <!-- bundle -->
     <script src="{{ asset('js/vendor.min.js') }}"></script>
@@ -70,22 +59,13 @@
     <script src="{{ asset('js/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.checkboxes.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/buttons.bootstrap5.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/buttons.html5.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/buttons.flash.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/buttons.print.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/dataTables.keyTable.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/dataTables.select.min.js') }}"></script> --}}
-    <!-- third party js ends -->
 
-    {{-- <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script> --}}
-    {{-- <script src="{{ asset('js/demo.customers.js') }}"></script> --}}
-    <!-- demo app -->
     <script src="{{ asset('js/demo.datatable-init.js') }}"></script>
 
     <!-- end demo js-->
 
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+
     {!! Toastr::message() !!}
 
     <script>

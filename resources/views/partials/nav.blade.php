@@ -108,7 +108,7 @@
 
         {{-- Setting --}}
         <li class="notification-list">
-            <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+            <a class="nav-link end-bar-toggle" href="{{ route('admin.themes.index') }}">
                 <i class="dripicons-gear noti-icon"></i>
             </a>
         </li>
@@ -120,10 +120,10 @@
                 <span class="account-user-avatar">
                     <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
                 </span>
-                <span>
+                {{-- <span class="center">
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
-                    <span class="account-position">{{ Auth::user()->roles()->pluck('desc')[0] ?? '' }}</span>
-                </span>
+                    <span class="account-position">{{ Auth::user()->phone }}</span>
+                </span> --}}
             </a>
 
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

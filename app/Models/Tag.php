@@ -18,15 +18,8 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  */
 class Tag extends EloquentModel
 {
-    use SoftDeletes;
-
 
     public $table = 'tags';
-
-
-    protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',

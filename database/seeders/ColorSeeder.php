@@ -17,31 +17,31 @@ class ColorSeeder extends Seeder
     {
         DB::table('colors')->insert([
             [
-                'id'    => 210001,
+                'id'    => 101,
                 'name' => 'primary',
             ],
             [
-                'id'    => 210002,
+                'id'    => 102,
                 'name' => 'success',
             ],
             [
-                'id'    => 210003,
+                'id'    => 103,
                 'name' => 'secondary',
             ],
             [
-                'id'    => 210004,
+                'id'    => 104,
                 'name' => 'danger',
             ],
             [
-                'id'    => 210005,
+                'id'    => 105,
                 'name' => 'warning',
             ],
             [
-                'id'    => 210006,
+                'id'    => 106,
                 'name' => 'info',
             ],
             [
-                'id'    => 210007,
+                'id'    => 107,
                 'name' => 'dark',
             ],
 

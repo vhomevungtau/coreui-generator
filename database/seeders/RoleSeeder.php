@@ -20,25 +20,30 @@ class RoleSeeder extends Seeder
 
         DB::table('roles')->insert([
             [
-                'id'    => 210001,
-                'name' => 'admin',
+                'id'    => 101,
+                'name' => 'Admin',
                 'desc'  => 'Quản trị'
             ],
             [
-                'id'    => 210002,
-                'name' => 'user',
-                'desc'  => 'Người dùng'
+                'id'    => 102,
+                'name' => 'Staff',
+                'desc'  => 'Nhân viên'
+            ],
+            [
+                'id'    => 103,
+                'name' => 'Customer',
+                'desc'  => 'Khách hàng'
             ]
 
         ]);
 
 
-        $role = Role::findById('210001');
+        // $role = Role::findById('210001');
 
-        $permissions = Permission::all();
+        // $permissions = Permission::all();
 
-        foreach ($permissions as $permission) {
-            $role->permissions()->attach($permission);
-        }
+        // foreach ($permissions as $permission) {
+        //     $role->permissions()->attach($permission);
+        // }
     }
 }

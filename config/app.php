@@ -177,6 +177,7 @@ return [
         InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -233,6 +234,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

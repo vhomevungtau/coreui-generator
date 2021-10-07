@@ -60,6 +60,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Tag::class, 'user_tag');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function theme()
+    {
+        return $this->hasOne(Theme::class);
+    }
+
     public static function boot()
     {
         parent::boot();

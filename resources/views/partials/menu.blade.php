@@ -35,14 +35,14 @@
 
              {{-- User manager --}}
              <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
-                    aria-controls="sidebarEcommerce" class="side-nav-link">
+                <a data-bs-toggle="collapse" href="#sidebarUser" aria-expanded="false"
+                    aria-controls="sidebarUser" class="side-nav-link">
                     <i class="uil-store"></i>
                     <span> Quản lý người dùng </span>
                     <span class="menu-arrow"></span>
                 </a>
 
-                <div class="collapse" id="sidebarEcommerce">
+                <div class="collapse" id="sidebarUser">
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('admin.users.index') }}">Người dùng</a>
@@ -51,10 +51,27 @@
                             <a href="{{ route('admin.roles.index') }}">Vai trò</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.permissions.index') }}">Quyền hạn</a>
-                        </li>
-                        <li>
                             <a href="{{ route('admin.tags.index') }}">Thẻ người dùng</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            {{-- Product manager --}}
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarProduct" aria-expanded="false"
+                    aria-controls="sidebarProduct" class="side-nav-link">
+                    <i class="mdi mdi-cart-variant"></i>
+                    <span> Quản trị dịch vụ </span>
+                    <span class="menu-arrow"></span>
+                </a>
+
+                <div class="collapse" id="sidebarProduct">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('admin.products.index') }}">Dịch vụ</a>
+                            <a href="{{ route('admin.prices.index') }}">Giá dịch vụ</a>
+                            <a href="{{ route('admin.orders.index') }}">Đơn hàng</a>
                         </li>
                     </ul>
                 </div>
@@ -62,32 +79,21 @@
 
             {{-- Setting --}}
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
-                    aria-controls="sidebarEcommerce" class="side-nav-link">
-                    <i class="uil uil-server-connection"></i>
+                <a data-bs-toggle="collapse" href="#sidebarSetting" aria-expanded="false"
+                    aria-controls="sidebarSetting" class="side-nav-link">
+                    <i class="mdi mdi-theme-light-dark"></i>
                     <span> Cài đặt </span>
                     <span class="menu-arrow"></span>
                 </a>
 
-                <div class="collapse" id="sidebarEcommerce">
+                <div class="collapse" id="sidebarSetting">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="{{ route('admin.colors.index') }}">Màu sắc</a>
+                            <a href="{{ route('admin.themes.index') }}">Giao diện</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{ route('admin.roles.index') }}">Vai trò</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.permissions.index') }}">Quyền hạn</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.tags.index') }}">Thẻ người dùng</a>
-                        </li> --}}
                     </ul>
                 </div>
             </li>
-
-
 
             {{-- Logout --}}
             <li class="side-nav-item">
@@ -97,7 +103,7 @@
 
                 <a href="{{ route('logout') }}" class="side-nav-link" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                    <i class="uil-folder-plus"></i>
+                    <i class="mdi mdi-logout"></i>
                     <span> Đăng xuất </span>
 
                 </a>

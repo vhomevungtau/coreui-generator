@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Response;
 use App\Models\Tag;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -34,7 +37,13 @@ class UserController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $users = $this->userRepository->all();
+        // dd(Auth::user()->theme->sidebar);
+
+        $users = User::with('roles','tags')
+                ->where('deleted_at',null)
+                ->get();
+
+        // $users = $this->userRepository->all();
 
         return view('users.index',[
             'users' =>$users,
