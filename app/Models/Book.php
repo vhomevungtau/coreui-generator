@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Eloquent as Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,24 +10,23 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
 /**
- * Class Order
+ * Class Book
  * @package App\Models
- * @version October 7, 2021, 8:16 am UTC
+ * @version October 8, 2021, 2:23 am UTC
  *
- * @property \App\Models\Product $id
- * @property \App\Models\User $id
- * @property \Illuminate\Database\Eloquent\Collection $statuses
- * @property integer $product_id
- * @property integer $user_id
+ * @property \App\Models\Order $order
+ * @property \App\Models\Status $status
+ * @property integer $order_id
  * @property integer $status_id
- * @property number $discount
+ * @property string $time
+ * @property string $content
  */
-class Order extends EloquentModel
+class Book extends EloquentModel
 {
     use SoftDeletes;
 
 
-    public $table = 'orders';
+    public $table = 'books';
 
 
     protected $dates = ['deleted_at'];
@@ -34,13 +34,11 @@ class Order extends EloquentModel
     public $incrementing = false;
 
     public $fillable = [
-        'price_id',
-        'user_id',
+        'order_id',
         'status_id',
-        'money',
-        'discount',
-        'total',
-        'content',
+        'time',
+        'date',
+        'content'
     ];
 
     /**
@@ -49,12 +47,15 @@ class Order extends EloquentModel
      * @var array
      */
     protected $casts = [
-        'price_id' => 'integer',
-        'user_id' => 'integer',
+        'id' => 'integer',
+        'order_id' => 'integer',
         'status_id' => 'integer',
-        'discount' => 'double',
-        'money' => 'double',
     ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d');
+    }
 
     /**
      * Validation rules
@@ -62,45 +63,33 @@ class Order extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'price_id' => 'required',
-        'user_id' => 'required',
+        'order_id' => 'required',
         'status_id' => 'required',
+        'time' => 'required',
+        'date' => 'required'
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function price()
+    public function order()
     {
-        return $this->belongsTo(Price::class);
+        return $this->belongsTo(Order::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
     public function status()
     {
         return $this->belongsTo(Status::class);
     }
 
-    public function books()
-    {
-        return $this->hasMany(Book::class);
-    }
-
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'orders', 'length' => 6, 'prefix' => date('y')]);
+            $model->id = IdGenerator::generate(['table' => 'books', 'length' => 6, 'prefix' => date('y')]);
         });
     }
 }

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Price;
-use App\Models\Product;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Repositories\PriceRepository;
-use App\Http\Requests\CreatePriceRequest;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Http\Controllers\AppBaseController;
 
@@ -34,71 +35,12 @@ class PriceController extends AppBaseController
         // $prices = $this->priceRepository->all();
 
         $prices = Price::with('product')
-                ->get();
+            ->get();
 
-        return view('prices.index',[
+        return view('prices.index', [
             'prices'    => $prices
         ]);
     }
-
-    /**
-     * Show the form for creating a new Price.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        $products = Product::all();
-
-        return view('prices.create',[
-            'products'  => $products
-        ]);
-    }
-
-    /**
-     * Store a newly created Price in storage.
-     *
-     * @param CreatePriceRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreatePriceRequest $request)
-    {
-        $input = $request->all();
-
-        if ($request->publish != null) {
-            $request['publish'] = 1;
-        } else {
-            $request['publish'] = 0;
-        }
-
-        $price = $this->priceRepository->create($input);
-
-        Toastr::success('Price saved successfully.');
-
-        return redirect(route('admin.prices.index'));
-    }
-
-    /**
-     * Display the specified Price.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $price = $this->priceRepository->find($id);
-
-        if (empty($price)) {
-            Toastr::error('Price not found');
-
-            return redirect(route('admin.prices.index'));
-        }
-
-        return view('prices.show')->with('price', $price);
-    }
-
     /**
      * Show the form for editing the specified Price.
      *
@@ -111,7 +53,7 @@ class PriceController extends AppBaseController
         $price = $this->priceRepository->find($id);
 
         if (empty($price)) {
-            Toastr::error('Price not found');
+            Toastr::error('Không tìm thấy giá dịch vụ');
 
             return redirect(route('admin.prices.index'));
         }
@@ -132,14 +74,20 @@ class PriceController extends AppBaseController
         $price = $this->priceRepository->find($id);
 
         if (empty($price)) {
-            Toastr::error('Price not found');
+            Toastr::error('Không tìm thấy giá dịch vụ');
 
             return redirect(route('admin.prices.index'));
         }
 
+        if ($request->publish != null) {
+            $request['publish'] = 1;
+        } else {
+            $request['publish'] = 0;
+        }
+
         $price = $this->priceRepository->update($request->all(), $id);
 
-        Toastr::success('Price updated successfully.');
+        Toastr::success('Cập nhật giá dịch vụ thành công.');
 
         return redirect(route('admin.prices.index'));
     }
@@ -158,15 +106,45 @@ class PriceController extends AppBaseController
         $price = $this->priceRepository->find($id);
 
         if (empty($price)) {
-            Toastr::error('Price not found');
+            Toastr::error('Không tìm thấy giá dịch vụ');
 
             return redirect(route('admin.prices.index'));
         }
 
         $this->priceRepository->delete($id);
 
-        Toastr::success('Price deleted successfully.');
+        Toastr::success('Xáo giá dịch vụ thành công.');
 
         return redirect(route('admin.prices.index'));
+    }
+
+    public function getOrder($id)
+    {
+        $price = $this->priceRepository->find($id);
+
+        return view('prices.order',[
+            'price'     => $price,
+            'users'     => User::all(),
+            'statuses'  => Status::all()
+        ]);
+    }
+
+    public function postOrder(Request $request)
+    {
+        $input = $request->all();
+
+        $price = Price::find($request->price_id)->price;
+
+        $input['price_id']  = $request->price_id;
+
+        $input['money'] = $price;
+
+        $input['total'] = (Double)$price - ((Double)$price * (Double)$request->discount);
+
+        $order = Order::create($input);
+
+        Toastr::success('Đặt dịch vụ thành công.');
+
+        return redirect(route('admin.orders.index'));
     }
 }

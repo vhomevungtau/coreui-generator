@@ -1,11 +1,8 @@
 <!-- Price Field -->
-<div class="mb-1">
-    {!! Form::label('name', 'Dịch vụ') !!}
-    <select class="form-select" name="price_id">
-        @foreach ($prices as $v)
-            <option value="{{ $v->id }}">{{ $v->product->name }} - {{ $v->number }} - {{ $v->price }}</option>
-        @endforeach
-    </select>
+<div class="mb-1 col-sm-12">
+    <label class="form-label">Giá dịch vụ: {{ $price->product->name }} -
+        {{ number_format($price->price,0) }}</label>
+    <input type="text" class="form-control" name="price_id" value="{{ $price->id }}" readonly="">
 </div>
 
 <!-- User -->

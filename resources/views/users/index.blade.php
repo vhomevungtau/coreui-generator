@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header">
                             {{-- Custome --}}
-                            <div class="row mb-2">
+                            <div class="row">
                                 {{-- Add button --}}
                                 <div class="col-sm-4">
                                     <a class="btn btn-sm btn-primary btn-rounded text-end"

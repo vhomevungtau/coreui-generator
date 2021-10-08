@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Thêm giá dịch vụ')
+@section('title', 'Đặt lịch')
 
 @section('content')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="{{ route('admin.prices.index') }}">Giá dịch vụ</a>
+            <a href="{{ route('admin.orders.index') }}">Đơn hàng</a>
         </li>
-        <li class="breadcrumb-item active">Thêm</li>
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
@@ -17,12 +16,12 @@
                     <div class="card">
                         <div class="card-header">
                             <i class="uil-focus-add"></i>
-                            <strong>Thêm giá dịch vụ</strong>
+                            <strong>Lịch hẹn</strong>
                         </div>
                         <div class="card-body">
-                            {!! Form::open(['route' => 'admin.prices.store']) !!}
+                            {!! Form::open(['route' => 'admin.orders.postbook']) !!}
 
-                            @include('prices.create-fields')
+                            @include('orders.book-fields')
 
                             {!! Form::close() !!}
                         </div>

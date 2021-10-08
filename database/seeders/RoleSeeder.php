@@ -38,7 +38,7 @@ class RoleSeeder extends Seeder
         ]);
 
 
-        // $role = Role::findById('210001');
+        // $role = Role::findById('101');
 
         // $permissions = Permission::all();
 

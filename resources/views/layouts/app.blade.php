@@ -61,6 +61,7 @@
     <script src="{{ asset('js/dataTables.checkboxes.min.js') }}"></script>
 
     <script src="{{ asset('js/demo.datatable-init.js') }}"></script>
+    <script src="{{ asset('js/timepicker.js') }}"></script>
 
     <!-- end demo js-->
 

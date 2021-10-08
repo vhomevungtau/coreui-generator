@@ -1,7 +1,7 @@
 <!-- Name Field -->
 <div class="mb-1 col-sm-12">
     {!! Form::label('name', 'Dịch vụ') !!}
-    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Dịch vụ']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Dịch vụ', 'readonly'=> '']) !!}
 </div>
 
 <!-- Desc Field -->

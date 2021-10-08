@@ -83,6 +83,7 @@ $(function() {
         // Default
         $("#scroll-horizontal-datatable").DataTable({
             scrollX: !0,
+            order: [ 0, 'desc' ],
             language: {
                 paginate: {
                     previous: "<i class='mdi mdi-chevron-left'>",

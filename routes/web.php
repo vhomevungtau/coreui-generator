@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PermissionController;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,27 +36,44 @@ Route::post(
 // Dashboard
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
 
-    // User manager
+
     Route::get('/', [HomeController::class, 'index'])->name('index');
+
+    // User
     Route::resource('users', UserController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('tags', TagController::class);
+
+    // Role
+    Route::get('/roles',[RoleController::class,'index'])->name('roles.index');
+
+    // Tag
+    Route::resource('tags', TagController::class)->except(['show']);
 
     // Setting
-    Route::resource('colors', App\Http\Controllers\ColorController::class);
+    // Route::resource('colors', App\Http\Controllers\ColorController::class);
 
     // Product manager
-    Route::resource('products', App\Http\Controllers\ProductController::class);
-    Route::resource('prices', App\Http\Controllers\PriceController::class);
+    Route::resource('products', App\Http\Controllers\ProductController::class)->except(['show']);
+
+    Route::resource('prices', App\Http\Controllers\PriceController::class)->except(['show','create','store']);
+
     // Route::resource('statuses', App\Http\Controllers\StatusController::class);
     Route::resource('orders', App\Http\Controllers\OrderController::class);
-    Route::resource('themes', App\Http\Controllers\ThemeController::class);
+
+    Route::resource('themes', App\Http\Controllers\ThemeController::class)->only(['index','store']);
+
+    Route::resource('books', App\Http\Controllers\BookController::class)->except(['show','create','store']);
+
+    // Custome route
+    Route::get('/products/{id}/price',[ProductController::class,'addPrice'])->name('products.getprice');
+    Route::post('/products/price',[ProductController::class,'postPrice'])->name('products.postprice');
+
+    Route::get('/prices/{id}/order',[PriceController::class,'getOrder'])->name('prices.getorder');
+    Route::post('/prices/order',[PriceController::class,'postOrder'])->name('prices.postorder');
+
+    Route::get('/orders/{id}/book',[OrderController::class,'getBook'])->name('orders.getbook');
+    Route::post('/orders/book',[OrderController::class,'postBook'])->name('orders.postbook');
 
 });
-
-
-
 
 
 

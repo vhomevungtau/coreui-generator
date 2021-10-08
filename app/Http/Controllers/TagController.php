@@ -68,26 +68,6 @@ class TagController extends AppBaseController
     }
 
     /**
-     * Display the specified Tag.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $tag = $this->tagRepository->find($id);
-
-        if (empty($tag)) {
-            Toastr::error('Không tìm thấy thẻ');
-
-            return redirect(route('admin.tags.index'));
-        }
-
-        return view('tags.show')->with('tag', $tag);
-    }
-
-    /**
      * Show the form for editing the specified Tag.
      *
      * @param int $id

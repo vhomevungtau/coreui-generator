@@ -43,5 +43,5 @@
 
 <div class="mb-1 col-sm-12">
     <button type="submit" class="btn btn-primary btn-rounded">Lưu</button>
-    <a href="{{ route('admin.prices.index') }}" class="btn btn-default justify-content-md-end">Hủy</a>
+    <a href="{{ route('admin.orders.index') }}" class="btn btn-default justify-content-md-end">Hủy</a>
 </div>

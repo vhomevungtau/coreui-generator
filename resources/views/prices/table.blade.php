@@ -28,8 +28,8 @@
                     <td class="text-center">
                         {!! Form::open(['route' => ['admin.prices.destroy', $v->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
-                            <a href="{!! route('admin.prices.show', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-info'><i
-                                    class="uil-eye"></i></a>
+                            <a href="{!! route('admin.prices.getorder', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-secondary'><i
+                                class="mdi mdi-cart"></i></a>
                             <a href="{!! route('admin.prices.edit', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-warning'><i
                                     class="uil-edit"></i></a>
                             {!! Form::button('<i class="uil-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-sm btn-rounded btn-danger', 'onclick' => "return confirm('Bạn có muốn xóa?')"]) !!}

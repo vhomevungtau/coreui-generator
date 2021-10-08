@@ -33,7 +33,8 @@ class Price extends EloquentModel
     public $fillable = [
         'product_id',
         'number',
-        'price'
+        'price',
+        'publish'
     ];
 
     /**

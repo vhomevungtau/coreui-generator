@@ -57,5 +57,10 @@ class Status extends EloquentModel
         return $this->hasMany(Order::class);
     }
 
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
 
 }

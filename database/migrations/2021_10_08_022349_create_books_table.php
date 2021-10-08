@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateBooksTable extends Migration
 {
 
     /**
@@ -14,26 +14,19 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('price_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+        Schema::create('books', function (Blueprint $table) {
+            $table->increments('id');
+            $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('status_id')->unsigned();
-            $table->double('money')->default(0);
-            $table->double('discount')->default(0);
-            $table->double('total');
+            $table->time('time')->default(now());
+            $table->date('date')->default(now());
             $table->text('content')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('price_id')
+            $table->foreign('order_id')
                     ->references('id')
-                    ->on('prices')
-                    ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users')
+                    ->on('orders')
                     ->onDelete('cascade');
 
             $table->foreign('status_id')
@@ -50,6 +43,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('orders');
+        Schema::drop('books');
     }
 }

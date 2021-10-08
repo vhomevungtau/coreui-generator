@@ -50,6 +50,9 @@
                         <li>
                             <a href="{{ route('admin.roles.index') }}">Vai trò</a>
                         </li>
+                        {{-- <li>
+                            <a href="{{ route('admin.permissions.index') }}">Quyền hạn</a>
+                        </li> --}}
                         <li>
                             <a href="{{ route('admin.tags.index') }}">Thẻ người dùng</a>
                         </li>
@@ -72,6 +75,7 @@
                             <a href="{{ route('admin.products.index') }}">Dịch vụ</a>
                             <a href="{{ route('admin.prices.index') }}">Giá dịch vụ</a>
                             <a href="{{ route('admin.orders.index') }}">Đơn hàng</a>
+                            <a href="{{ route('admin.books.index') }}">Lịch hẹn</a>
                         </li>
                     </ul>
                 </div>

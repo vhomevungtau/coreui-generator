@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Book;
 use App\Models\User;
+use App\Models\Price;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Repositories\OrderRepository;
+use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Order;
-use App\Models\Price;
-use App\Models\Status;
-use PhpParser\Node\Expr\Cast\Double;
 
 class OrderController extends AppBaseController
 {
@@ -76,7 +76,7 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->create($input);
 
-        Toastr::success('Order saved successfully.');
+        Toastr::success('Thêm đơn hàng thành công.');
 
         return redirect(route('admin.orders.index'));
     }
@@ -94,7 +94,7 @@ class OrderController extends AppBaseController
 
 
         if (empty($order)) {
-            Toastr::error('Order not found');
+            Toastr::error('Không tìm thấy đơn hàng');
 
             return redirect(route('admin.orders.index'));
         }
@@ -118,7 +118,7 @@ class OrderController extends AppBaseController
         $statuses   = Status::all();
 
         if (empty($order)) {
-            Toastr::error('Order not found');
+            Toastr::error('Không tìm thấy đơn hàng');
 
             return redirect(route('admin.orders.index'));
         }
@@ -144,7 +144,7 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Toastr::error('Order not found');
+            Toastr::error('Không tìm thấy đơn hàng');
 
             return redirect(route('admin.orders.index'));
         }
@@ -155,7 +155,7 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->update($request->all(), $id);
 
-        Toastr::success('Order updated successfully.');
+        Toastr::success('Cập nhật đơn hàng thành công.');
 
         return redirect(route('admin.orders.index'));
     }
@@ -174,15 +174,54 @@ class OrderController extends AppBaseController
         $order = $this->orderRepository->find($id);
 
         if (empty($order)) {
-            Toastr::error('Order not found');
+            Toastr::error('Không tìm thấy đơn hàng');
 
             return redirect(route('admin.orders.index'));
         }
 
         $this->orderRepository->delete($id);
 
-        Toastr::success('Order deleted successfully.');
+        Toastr::success('Xóa đơn hàng thành công.');
 
         return redirect(route('admin.orders.index'));
+    }
+
+    public function getBook($id)
+    {
+        $order = $this->orderRepository->find($id);
+
+        $statuses   = Status::all();
+
+        if ($order->price->number - $order->books->count() <= 0) {
+
+            Toastr::error('Đơn hàng đã sử dụng hết. Không thể đặt lịch.');
+            return redirect(route('admin.orders.index'));
+        }
+
+        if (empty($order)) {
+            Toastr::error('Không tìm thấy đơn hàng');
+
+            return redirect(route('admin.orders.index'));
+        }
+
+        return view('orders.book',[
+            'order'     => $order,
+            'statuses'    => $statuses
+        ]);
+    }
+
+    public function postBook(CreateBookRequest $request)
+    {
+        $input = $request->all();
+
+        $input['date']  = date('Y-m-d', strtotime($request->date));
+
+        // dd($input['date']);
+
+        Book::create($input);
+
+        Toastr::success('Đặt lịch thành công.');
+
+        return redirect(route('admin.books.index'));
     }
 }

@@ -2,23 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Models\Permission;
+use App\Models\Book;
 use App\Repositories\BaseRepository;
 
 /**
- * Class PermissionRepository
+ * Class BookRepository
  * @package App\Repositories
- * @version September 30, 2021, 2:19 pm UTC
+ * @version October 8, 2021, 2:23 am UTC
 */
 
-class PermissionRepository extends BaseRepository
+class BookRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
-        'desc'
+        'order_id',
+        'status_id',
+        'time',
+        'content'
     ];
 
     /**
@@ -36,6 +38,6 @@ class PermissionRepository extends BaseRepository
      **/
     public function model()
     {
-        return Permission::class;
+        return Book::class;
     }
 }

@@ -21,7 +21,7 @@
                     <td>{{ $v->price->product->name }}</td>
                     <td>{{ $v->user->name }}</td>
                     <td class="text-center">{{ $v->price->number }}</td>
-                    <td class="text-end">{{ number_format($v->price->price, 0) }}</td>
+                    <td class="text-end">{{ number_format($v->money, 0) }}</td>
                     <td class="text-end">{{ round((float)($v->discount) * 100 ) . ' %' }}</td>
                     <td class="text-end">{{ number_format($v->total, 0) }}</td>
                     <td class="text-center"><span
@@ -30,6 +30,10 @@
                     <td class="text-center">
                         {!! Form::open(['route' => ['admin.orders.destroy', $v->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            @if ($v->status->id != 105)
+                            <a href="{!! route('admin.orders.getbook', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-secondary'><i
+                                class="mdi mdi-calendar-account-outline"></i></a>
+                            @endif
                             <a href="{!! route('admin.orders.show', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-info'><i
                                     class="uil-eye"></i></a>
                             <a href="{!! route('admin.orders.edit', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-warning'><i
