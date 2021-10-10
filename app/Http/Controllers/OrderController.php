@@ -6,14 +6,19 @@ use Response;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Price;
+use App\Models\Server;
 use App\Models\Status;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Http;
 use App\Repositories\OrderRepository;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\AppBaseController;
+
+use function PHPSTORM_META\type;
 
 class OrderController extends AppBaseController
 {
@@ -92,7 +97,6 @@ class OrderController extends AppBaseController
     {
         $order = $this->orderRepository->find($id);
 
-
         if (empty($order)) {
             Toastr::error('Không tìm thấy đơn hàng');
 
@@ -155,6 +159,18 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->update($request->all(), $id);
 
+        // Send sms
+        $data = Server::first()->attributesToArray();
+        $url = $data['url'];
+
+        $data['number'] = $order->user->phone;
+        $data['message']    = $order->status->template->content;
+        $data = Arr::except($data, ['url','id','created_at','updated_at']);
+
+        $result = Http::post($url, $data);
+
+        // dd($result);
+
         Toastr::success('Cập nhật đơn hàng thành công.');
 
         return redirect(route('admin.orders.index'));
@@ -190,7 +206,7 @@ class OrderController extends AppBaseController
     {
         $order = $this->orderRepository->find($id);
 
-        $statuses   = Status::all();
+        $statuses   = Status::where('type','book')->get();
 
         if ($order->price->number - $order->books->count() <= 0) {
 

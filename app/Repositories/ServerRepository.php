@@ -2,24 +2,28 @@
 
 namespace App\Repositories;
 
-use App\Models\Status;
+use App\Models\Server;
 use App\Repositories\BaseRepository;
 
 /**
- * Class StatusRepository
+ * Class ServerRepository
  * @package App\Repositories
- * @version October 10, 2021, 3:50 pm +07
+ * @version October 10, 2021, 8:19 am +07
 */
 
-class StatusRepository extends BaseRepository
+class ServerRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
+        'url',
+        'key',
+        'devices',
         'type',
-        'name',
-        'desc'
+        'prioritize',
+        'schedule',
+        'attachments'
     ];
 
     /**
@@ -37,6 +41,6 @@ class StatusRepository extends BaseRepository
      **/
     public function model()
     {
-        return Status::class;
+        return Server::class;
     }
 }

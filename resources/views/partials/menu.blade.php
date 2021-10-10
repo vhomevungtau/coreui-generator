@@ -53,9 +53,7 @@
                         {{-- <li>
                             <a href="{{ route('admin.permissions.index') }}">Quyền hạn</a>
                         </li> --}}
-                        <li>
-                            <a href="{{ route('admin.tags.index') }}">Thẻ người dùng</a>
-                        </li>
+
                     </ul>
                 </div>
             </li>
@@ -94,6 +92,15 @@
                     <ul class="side-nav-second-level">
                         <li>
                             <a href="{{ route('admin.themes.index') }}">Giao diện</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.statuses.index') }}">Trạng thái</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.servers.index') }}">Máy chủ tin nhắn</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.templates.index') }}">Mẫu tin nhắn</a>
                         </li>
                     </ul>
                 </div>

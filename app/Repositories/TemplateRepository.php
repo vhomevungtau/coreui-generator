@@ -2,24 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\Status;
+use App\Models\Template;
 use App\Repositories\BaseRepository;
 
 /**
- * Class StatusRepository
+ * Class TemplateRepository
  * @package App\Repositories
- * @version October 10, 2021, 3:50 pm +07
+ * @version October 10, 2021, 7:23 am +07
 */
 
-class StatusRepository extends BaseRepository
+class TemplateRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'type',
         'name',
-        'desc'
+        'desc',
+        'content'
     ];
 
     /**
@@ -37,6 +37,6 @@ class StatusRepository extends BaseRepository
      **/
     public function model()
     {
-        return Status::class;
+        return Template::class;
     }
 }

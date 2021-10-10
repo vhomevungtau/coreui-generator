@@ -12,6 +12,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Repositories\PriceRepository;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Server;
 
 class PriceController extends AppBaseController
 {
@@ -125,7 +126,7 @@ class PriceController extends AppBaseController
         return view('prices.order',[
             'price'     => $price,
             'users'     => User::all(),
-            'statuses'  => Status::all()
+            'statuses'  => Status::where('type','order')->get()
         ]);
     }
 

@@ -26,11 +26,16 @@ class RoleSeeder extends Seeder
             ],
             [
                 'id'    => 102,
+                'name' => 'Manager',
+                'desc'  => 'Quản lý'
+            ],
+            [
+                'id'    => 103,
                 'name' => 'Staff',
                 'desc'  => 'Nhân viên'
             ],
             [
-                'id'    => 103,
+                'id'    => 104,
                 'name' => 'Customer',
                 'desc'  => 'Khách hàng'
             ]

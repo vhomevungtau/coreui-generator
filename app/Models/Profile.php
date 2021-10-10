@@ -9,32 +9,25 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
 /**
- * Class Status
+ * Class Profile
  * @package App\Models
- * @version October 10, 2021, 3:50 pm +07
+ * @version October 10, 2021, 8:44 am +07
  *
- * @property \App\Models\Template $template
- * @property string $type
- * @property string $name
- * @property string $desc
+ * @property \App\Models\User $user
+ * @property string $sms
+ * @property string $info
  */
-class Status extends EloquentModel
+class Profile extends EloquentModel
 {
-    use SoftDeletes;
 
+    public $table = 'profiles';
 
-    public $table = 'statuses';
-
-
-    protected $dates = ['deleted_at'];
-
+    public $incrementing = false;
 
 
     public $fillable = [
-        'type',
-        'name',
-        'desc',
-        'color'
+        'sms',
+        'info'
     ];
 
     /**
@@ -44,9 +37,7 @@ class Status extends EloquentModel
      */
     protected $casts = [
         'id' => 'integer',
-        'type' => 'string',
-        'name' => 'string',
-        'desc' => 'string'
+        'sms' => 'string'
     ];
 
     /**
@@ -55,24 +46,22 @@ class Status extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'type' => 'required',
-        'name' => 'required',
-        'desc' => 'required'
+        'sms' => 'required|max:50',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      **/
-    public function template()
+    public function user()
     {
-        return $this->hasOne(Template::class);
+        return $this->belongsTo(User::class);
     }
 
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'statuses', 'length' => 6, 'prefix' => date('y')]);
+            $model->id = IdGenerator::generate(['table' => 'profiles', 'length' => 6, 'prefix' => date('y')]);
         });
     }
 }

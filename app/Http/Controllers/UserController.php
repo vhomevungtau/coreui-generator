@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Profile;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
@@ -212,4 +214,74 @@ class UserController extends AppBaseController
 
         return redirect(route('admin.users.index'));
     }
+
+    public function getProfile($id)
+    {
+        $user = $this->userRepository->find($id);
+
+
+        if (empty($user)) {
+            Toastr::error('Không tìm thấy người dùng');
+
+            return redirect(route('admin.users.index'));
+        }
+
+        return view('users.profile',[
+            'user'      => $user,
+        ]);
+    }
+
+    /**
+     * Update the specified User in storage.
+     *
+     * @param int $id
+     * @param UpdateUserRequest $request
+     *
+     * @return Response
+     */
+    public function postProfile($id, Request $request)
+    {
+
+        // dd('ok');
+
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            Toastr::error('Không tìm thấy người dùng');
+
+            return redirect(route('admin.users.index'));
+        }
+        $input =  $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            unset($input['password']);
+        }
+        $user = $this->userRepository->update($input, $id);
+
+        // Profile
+        $user = $this->userRepository->find($id);
+
+        $profile = Profile::find($user->profile->id);
+
+
+        if ($profile->id) {
+            $profile = Profile::find($profile->id);
+            $profile['sms']   = $request->sms;
+            $profile['info']  = $request->info;
+            $profile['user_id']   = $user->id;
+            $profile->save();
+        }else{
+            $profile = new Profile();
+            $profile['sms']   = $request->sms;
+            $profile['info']  = $request->info;
+            $profile['user_id']   = $user->id;
+            $user->profile()->save($profile);
+        }
+
+        Toastr::success('Cập nhật thành công.');
+
+        return redirect(route('admin.users.index'));
+    }
+
 }

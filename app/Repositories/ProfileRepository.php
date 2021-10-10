@@ -2,24 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Status;
+use App\Models\Profile;
 use App\Repositories\BaseRepository;
 
 /**
- * Class StatusRepository
+ * Class ProfileRepository
  * @package App\Repositories
- * @version October 10, 2021, 3:50 pm +07
+ * @version October 10, 2021, 8:44 am +07
 */
 
-class StatusRepository extends BaseRepository
+class ProfileRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'type',
-        'name',
-        'desc'
+        'sms',
+        'info'
     ];
 
     /**
@@ -37,6 +36,6 @@ class StatusRepository extends BaseRepository
      **/
     public function model()
     {
-        return Status::class;
+        return Profile::class;
     }
 }

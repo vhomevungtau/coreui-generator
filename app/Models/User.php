@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasOne(Theme::class);
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     public static function boot()
     {
         parent::boot();

@@ -30,6 +30,8 @@
                     <td class="text-center">
                         {!! Form::open(['route' => ['admin.users.destroy', $v->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            <a href="{!! route('admin.users.getprofile', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-secondary'><i
+                                class="mdi mdi-human"></i></a>
                             <a href="{!! route('admin.users.show', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-info'><i
                                     class="uil-eye"></i></a>
                             <a href="{!! route('admin.users.edit', [$v->id]) !!}" class='btn btn-sm btn-rounded btn-warning'><i

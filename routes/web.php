@@ -41,12 +41,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     // User
     Route::resource('users', UserController::class);
+    Route::get('/users/{id}/profile',[UserController::class,'getProfile'])->name('users.getprofile');
+    Route::put('/users/{id}/profile',[UserController::class,'postProfile'])->name('users.postprofile');
 
     // Role
     Route::get('/roles',[RoleController::class,'index'])->name('roles.index');
 
     // Tag
-    Route::resource('tags', TagController::class)->except(['show']);
+    // Route::resource('tags', TagController::class)->except(['show']);
 
     // Setting
     // Route::resource('colors', App\Http\Controllers\ColorController::class);
@@ -56,7 +58,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     Route::resource('prices', App\Http\Controllers\PriceController::class)->except(['show','create','store']);
 
-    // Route::resource('statuses', App\Http\Controllers\StatusController::class);
+    Route::resource('statuses', App\Http\Controllers\StatusController::class)->except(['show']);
+
     Route::resource('orders', App\Http\Controllers\OrderController::class);
 
     Route::resource('themes', App\Http\Controllers\ThemeController::class)->only(['index','store']);
@@ -73,7 +76,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('/orders/{id}/book',[OrderController::class,'getBook'])->name('orders.getbook');
     Route::post('/orders/book',[OrderController::class,'postBook'])->name('orders.postbook');
 
+    Route::resource('templates', App\Http\Controllers\TemplateController::class);
+
+    Route::resource('servers', App\Http\Controllers\ServerController::class)->only(['index','store']);
+
+    Route::resource('profiles', App\Http\Controllers\ProfileController::class)->only(['index','store']);
+
 });
-
-
-
