@@ -103,7 +103,10 @@ class TemplateController extends AppBaseController
             return redirect(route('admin.templates.index'));
         }
 
-        return view('templates.edit')->with('template', $template);
+        return view('templates.edit',[
+            'statuses'  => Status::all(),
+            'template'  => $template,
+        ]);
     }
 
     /**

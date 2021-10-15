@@ -18,7 +18,7 @@ class CreateServersTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('key');
-            $table->integer('devices')->default(0);
+            $table->string('devices')->default('40|1');
             $table->string('type')->default('sms');
             $table->integer('prioritize')->default(0);
             $table->dateTime('schedule')->default(null)->nullable();

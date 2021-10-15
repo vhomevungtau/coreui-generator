@@ -17,7 +17,7 @@
 
 <!-- Status -->
 <div class="mb-1">
-    {!! Form::label('name', 'Khách hàng') !!}
+    {!! Form::label('name', 'Trạng thái') !!}
     <select class="form-select" name="status_id">
         @foreach ($statuses as $v)
             <option value="{{ $v->id }}">{{ $v->name }}</option>

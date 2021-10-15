@@ -12,7 +12,7 @@
         "brian2694/laravel-toastr": "^5.56",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.3",
         "haruncpi/laravel-id-generator": "^1.0",
         "infyomlabs/adminlte-templates": "^3.0",
         "infyomlabs/coreui-templates": "8.0.x-dev",

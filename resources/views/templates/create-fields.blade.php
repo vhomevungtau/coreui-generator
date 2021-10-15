@@ -4,7 +4,7 @@
     <label class="form-label">Trạng thái</label>
     <select class="form-select" name="status_id">
         @foreach ($statuses as $v)
-            <option value="{{ $v->id }}" @if ($v->id == $template->status->id) selected @endif>{{ $v->desc }}</option>
+            <option value="{{ $v->id }}">{{ $v->desc }}</option>
         @endforeach
     </select>
 </div>

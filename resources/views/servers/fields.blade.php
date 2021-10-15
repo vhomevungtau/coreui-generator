@@ -13,7 +13,7 @@
 <!-- Devices Field -->
 <div class="mb-1 col-sm-12">
     {!! Form::label('devices', 'Thiết bị') !!}
-    {!! Form::number('devices', null, ['class' => 'form-control']) !!}
+    {!! Form::text('devices', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- 'bootstrap / Toggle Switch Prioritize Field' -->

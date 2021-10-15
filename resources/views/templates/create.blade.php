@@ -22,7 +22,7 @@
                         <div class="card-body">
                             {!! Form::open(['route' => 'admin.templates.store']) !!}
 
-                            @include('templates.fields')
+                            @include('templates.create-fields')
 
                             {!! Form::close() !!}
                         </div>

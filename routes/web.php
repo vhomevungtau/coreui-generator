@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
@@ -81,5 +82,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::resource('servers', App\Http\Controllers\ServerController::class)->only(['index','store']);
 
     Route::resource('profiles', App\Http\Controllers\ProfileController::class)->only(['index','store']);
+
+    Route::post('/message',[MessageController::class,'store']);
+
 
 });

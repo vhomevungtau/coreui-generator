@@ -43,7 +43,7 @@ class Server extends EloquentModel
         'id' => 'integer',
         'url' => 'string',
         'key' => 'string',
-        'devices' => 'integer',
+        'devices' => 'string',
         'type' => 'string',
         'prioritize' => 'integer',
         'schedule' => 'datetime',

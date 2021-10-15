@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 
@@ -14,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @version October 10, 2021, 8:44 am +07
  *
  * @property \App\Models\User $user
- * @property string $sms
+ * @property string $username
  * @property string $info
  */
 class Profile extends EloquentModel
@@ -26,7 +24,7 @@ class Profile extends EloquentModel
 
 
     public $fillable = [
-        'sms',
+        'username',
         'info'
     ];
 
@@ -37,7 +35,7 @@ class Profile extends EloquentModel
      */
     protected $casts = [
         'id' => 'integer',
-        'sms' => 'string'
+        'username' => 'string'
     ];
 
     /**
@@ -46,7 +44,7 @@ class Profile extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'sms' => 'required|max:50',
+        'username' => 'required|max:50',
     ];
 
     /**

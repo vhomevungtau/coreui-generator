@@ -261,19 +261,16 @@ class UserController extends AppBaseController
 
         // Profile
         $user = $this->userRepository->find($id);
-
-        $profile = Profile::find($user->profile->id);
-
-
-        if ($profile->id) {
-            $profile = Profile::find($profile->id);
-            $profile['sms']   = $request->sms;
+        // dd($user->profile);
+        if ($user->profile != null) {
+            $profile = Profile::find($user->profile->id);
+            $profile['username']   = $request->username;
             $profile['info']  = $request->info;
             $profile['user_id']   = $user->id;
             $profile->save();
         }else{
             $profile = new Profile();
-            $profile['sms']   = $request->sms;
+            $profile['username']   = $request->username;
             $profile['info']  = $request->info;
             $profile['user_id']   = $user->id;
             $user->profile()->save($profile);

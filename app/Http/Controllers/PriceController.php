@@ -122,10 +122,15 @@ class PriceController extends AppBaseController
     public function getOrder($id)
     {
         $price = $this->priceRepository->find($id);
+        $users = User::all();
+
+        // foreach ($users as $v) {
+        //     dd($v->name);
+        // }
 
         return view('prices.order',[
             'price'     => $price,
-            'users'     => User::all(),
+            'users'     => $users,
             'statuses'  => Status::where('type','order')->get()
         ]);
     }

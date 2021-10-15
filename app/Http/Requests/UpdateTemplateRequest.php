@@ -26,8 +26,7 @@ class UpdateTemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:100',
-            'desc' => 'required|max:160'
+            'content' => 'required|max:160'
         ];
     }
 }
