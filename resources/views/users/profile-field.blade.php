@@ -1,13 +1,13 @@
 <!-- Sms Field -->
 <div class="mb-2 col-sm-12">
     {!! Form::label('username', 'Xưng hô (SMS)') !!}
-    {!! Form::text('username', $user->profile->username != null ? $user->profile->username : null, ['class' => 'form-control']) !!}
+    {!! Form::text('username', $user->profile != null ? $user->profile->username : null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Info Field -->
 <div class="mb-2 col-sm-12 col-lg-12">
     {!! Form::label('info', 'Thông tin khách hàng') !!}
-    {!! Form::textarea('info', $user->profile->info != null ? $user->profile->info : null, ['class' => 'form-control','rows'=>'5']) !!}
+    {!! Form::textarea('info', $user->profile != null ? $user->profile->info : null, ['class' => 'form-control','rows'=>'5']) !!}
 </div>
 
 <div class="mb-1 col-sm-12">

@@ -178,6 +178,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\SmsServiceProvider::class,
 
     ],
 

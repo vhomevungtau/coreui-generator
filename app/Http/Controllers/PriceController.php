@@ -6,13 +6,14 @@ use Response;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Price;
+use App\Models\Server;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Http;
 use App\Repositories\PriceRepository;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Server;
 
 class PriceController extends AppBaseController
 {
@@ -139,6 +140,17 @@ class PriceController extends AppBaseController
     {
         $input = $request->all();
 
+        // Neu user da order + chua hoan thanh thi khong dc order tiep
+        $orders = Order::all();
+        foreach ($orders as $v) {
+            if ($v->user_id == $request->user_id && $v->status->id <> 21006) {
+                Toastr::error('Khách hàng đã có đơn hàng trên hệ thống. Vui lòng liên hệ Thanh Thuy Spa.');
+                return redirect(route('admin.prices.index'));
+            }
+        }
+
+
+
         $price = Price::find($request->price_id)->price;
 
         $input['price_id']  = $request->price_id;
@@ -148,6 +160,16 @@ class PriceController extends AppBaseController
         $input['total'] = (Double)$price - ((Double)$price * (Double)$request->discount);
 
         $order = Order::create($input);
+
+        // Varible sms
+        $username = $order->user->profile->username;
+        $totalOrder = number_format($order->total, 0) . ' dong';
+        // Send sms
+        $data = Server::first()->attributesToArray();
+        $url = $data['url'];
+        $data['number'] = $order->user->phone;
+        $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
+        $response = Http::get($url, $data);
 
         Toastr::success('Đặt dịch vụ thành công.');
 

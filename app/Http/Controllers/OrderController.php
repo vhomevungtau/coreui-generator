@@ -19,7 +19,6 @@ use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Controllers\AppBaseController;
-use GuzzleHttp\Client;
 
 class OrderController extends AppBaseController
 {
@@ -148,12 +147,10 @@ class OrderController extends AppBaseController
     {
         $order = $this->orderRepository->find($id);
 
+        // Varible sms
         $username = $order->user->profile->username;
-
-        // dd($username);
         $totalOrder = number_format($order->total, 0) . ' dong';
 
-        // dd($totalOrder);
 
         if (empty($order)) {
             Toastr::error('Không tìm thấy đơn hàng');
@@ -167,20 +164,13 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->update($request->all(), $id);
 
-        // dd($order->status->template->content);
+
 
         // Send sms
         $data = Server::first()->attributesToArray();
         $url = $data['url'];
-
         $data['number'] = $order->user->phone;
-
-        // dd (sprintf($order->status->template->content, $username, $totalOrder));
-
         $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
-
-        $data = Arr::except($data, ['url','id','created_at','updated_at']);
-
         $response = Http::get($url, $data);
 
         Toastr::success('Cập nhật đơn hàng thành công.');
@@ -245,6 +235,8 @@ class OrderController extends AppBaseController
         $input['date']  = date('Y-m-d', strtotime($request->date));
 
         // dd($input['date']);
+
+        Book::create($input);
 
         Toastr::success('Đặt lịch thành công.');
 

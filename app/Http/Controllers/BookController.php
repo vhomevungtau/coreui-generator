@@ -55,7 +55,7 @@ class BookController extends AppBaseController
 
         return view('books.edit',[
             'book'      => $book,
-            'statuses'  => Status::all()
+            'statuses'  => Status::where('type','book')->get()
         ]);
     }
 
