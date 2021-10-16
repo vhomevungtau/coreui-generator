@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Response;
+use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Price;
 use App\Models\Server;
 use App\Models\Status;
 use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use Spatie\GoogleCalendar\Event;
 use Brian2694\Toastr\Facades\Toastr;
+
 use Illuminate\Support\Facades\Http;
 use App\Repositories\OrderRepository;
-
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
@@ -165,6 +167,8 @@ class OrderController extends AppBaseController
         $data['number'] = $order->user->phone;
         $username = $order->user->profile->username;
 
+        $data['message'] = "";
+
         if ($order->status->id == 210003 || $order->status->id == 210005) {
             $totalOrder = number_format($order->total, 0) . ' dong';
             $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
@@ -173,6 +177,16 @@ class OrderController extends AppBaseController
         }
 
         Http::get($url, $data);
+
+        // Zalo
+        $dataZalo = [];
+        $dataZalo['recipient']['user_id'] = env('ZALO_OA');
+        $dataZalo['message']['text']= $data['message'];
+
+        Http::withHeaders([
+            'access_token' => env('ZALO_TOKEN'),
+            'Accept' => 'application/json',
+            ])->post(env('ZALO_URL'), $dataZalo);
 
         Toastr::success('Cập nhật đơn hàng thành công.');
 
@@ -247,6 +261,23 @@ class OrderController extends AppBaseController
         $data['message']    = sprintf($book->status->template->content, $time, $date);
 
         Http::get($url, $data);
+
+        // Google Calendar
+        $event = new Event;
+        $event->name = $book->content;
+        $event->startDateTime = Carbon::now();
+        $event->endDateTime = Carbon::now()->addHour();
+        $event->save();
+
+       // Zalo
+       $dataZalo = [];
+       $dataZalo['recipient']['user_id'] = env('ZALO_OA');
+       $dataZalo['message']['text']= $data['message'];
+
+       Http::withHeaders([
+           'access_token' => env('ZALO_TOKEN'),
+           'Accept' => 'application/json',
+           ])->post(env('ZALO_URL'), $dataZalo);
 
         Toastr::success('Đặt lịch thành công.');
 

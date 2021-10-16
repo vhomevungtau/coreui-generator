@@ -14,7 +14,7 @@
         </li> --}}
 
 
-        <li class="dropdown notification-list">
+        {{-- <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                 aria-haspopup="false" aria-expanded="false">
                 <i class="dripicons-bell noti-icon"></i>
@@ -104,7 +104,7 @@
                 </a>
 
             </div>
-        </li>
+        </li> --}}
 
         {{-- Setting --}}
         <li class="notification-list">
@@ -114,16 +114,16 @@
         </li>
 
         {{-- Profile --}}
-        <li class="dropdown notification-list">
+        {{-- <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                    <img src="{{ asset('images/users/avatar-1.png') }}" alt="user-image" class="rounded-circle">
                 </span>
-                {{-- <span class="center">
+                <span class="center">
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
                     <span class="account-position">{{ Auth::user()->phone }}</span>
-                </span> --}}
+                </span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -147,7 +147,7 @@
                     <span>Đăng xuất</span>
                 </a>
             </div>
-        </li>
+        </li> --}}
 
     </ul>
 

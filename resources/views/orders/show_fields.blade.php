@@ -14,6 +14,7 @@
                 <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                     <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden scroll;">
                         <div class="simplebar-content" style="padding: 0px;">
+
                             <div class="timeline-alt pb-0">
 
                                 @foreach ($order->books as $book)

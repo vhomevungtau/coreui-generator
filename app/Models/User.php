@@ -75,6 +75,11 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function zalo()
+    {
+        return $this->hasOne(Zalo::class);
+    }
+
     public function price()
     {
         return $this->hasOne(Price::class);

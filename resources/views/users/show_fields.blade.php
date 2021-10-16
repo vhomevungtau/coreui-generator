@@ -2,18 +2,18 @@
     <div class="col-xl-4 col-lg-5">
         <div class="card text-center">
             <div class="card-body">
-                <img src="{{ asset('images/users/avatar-1.jpg') }}" class="rounded-circle avatar-lg img-thumbnail"
+                <img src="{{ asset('images/users/avatar-1.png') }}" class="rounded-circle avatar-lg img-thumbnail"
                     alt="profile-image">
 
                 <h4 class="mb-0 mt-2">{{ $user->name }}</h4>
-                <p class="text-muted font-14">Founder</p>
+                {{-- <p class="text-muted font-14">Founder</p> --}}
 
-                <button type="button" class="btn btn-success btn-sm mb-2">Nhắn tin</button>
+                {{-- <button type="button" class="btn btn-success btn-sm mb-2">Nhắn tin</button> --}}
 
                 <div class="text-start mt-3">
-                    <h4 class="font-13 text-uppercase">Giới thiệu</h4>
+                    <h4 class="font-13 text-uppercase">THÔNG TIN</h4>
                     <p class="text-muted font-13 mb-3">
-                        Hi I'm Johnathn Nguyễn
+                        {{ $user->profile->info }}
                     </p>
                     <p class="text-muted mb-2 font-13"><strong>Họ tên :</strong> <span
                             class="ms-2">{{ $user->name }}</span></p>
@@ -34,7 +34,7 @@
 
                 </div>
 
-                <ul class="social-list list-inline mt-3 mb-0">
+                {{-- <ul class="social-list list-inline mt-3 mb-0">
                     <li class="list-inline-item">
                         <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i
                                 class="mdi mdi-facebook"></i></a>
@@ -43,7 +43,7 @@
                         <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i
                                 class="mdi mdi-youtube"></i></a>
                     </li>
-                </ul>
+                </ul> --}}
             </div> <!-- end card-body -->
         </div> <!-- end card -->
     </div> <!-- end col-->
@@ -54,60 +54,47 @@
                 <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
                     <li class="nav-item">
                         <a href="#aboutme" data-bs-toggle="tab" aria-expanded="true" class="nav-link rounded-0 active">
-                            Thông tin
+                            Thông tin người dùng
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0">
                             Tài khoản
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane show active" id="aboutme">
                         {{-- Tiểu sử --}}
-                        <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>
-                            Lịch sử trị liệu</h5>
+                        {{-- <h5 class="text-uppercase"><i class="mdi mdi-briefcase me-1"></i>
+                            Lịch sử trị liệu</h5> --}}
 
                         <div class="timeline-alt pb-0">
-                            <div class="timeline-item">
-                                <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
-                                <div class="timeline-item-info">
-                                    <h5 class="mt-0 mb-1">Lead designer / Developer</h5>
-                                    <p class="font-14">websitename.com <span class="ms-2 font-12">Year: 2015 -
-                                            18</span></p>
-                                    <p class="text-muted mt-2 mb-0 pb-3">Everyone realizes why a new common language
-                                        would be desirable: one could refuse to pay expensive translators.
-                                        To achieve this, it would be necessary to have uniform grammar,
-                                        pronunciation and more common words.</p>
-                                </div>
-                            </div>
+                            <div class="timeline-alt pb-0">
 
-                            <div class="timeline-item">
-                                <i class="mdi mdi-circle bg-primary-lighten text-primary timeline-icon"></i>
-                                <div class="timeline-item-info">
-                                    <h5 class="mt-0 mb-1">Senior Graphic Designer</h5>
-                                    <p class="font-14">Software Inc. <span class="ms-2 font-12">Year: 2012 -
-                                            15</span></p>
-                                    <p class="text-muted mt-2 mb-0 pb-3">If several languages coalesce, the grammar
-                                        of the resulting language is more simple and regular than that of
-                                        the individual languages. The new common language will be more
-                                        simple and regular than the existing European languages.</p>
-
-                                </div>
-                            </div>
-
-                            <div class="timeline-item">
-                                <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
-                                <div class="timeline-item-info">
-                                    <h5 class="mt-0 mb-1">Graphic Designer</h5>
-                                    <p class="font-14">Coderthemes Design LLP <span class="ms-2 font-12">Year:
-                                            2010 - 12</span></p>
-                                    <p class="text-muted mt-2 mb-0 pb-2">The European languages are members of
-                                        the same family. Their separate existence is a myth. For science
-                                        music sport etc, Europe uses the same vocabulary. The languages
-                                        only differ in their grammar their pronunciation.</p>
-                                </div>
+                                @foreach ($user->orders as $order)
+                                    @foreach ($order->books as $book)
+                                        <div class="timeline-item">
+                                            <i
+                                                class="mdi mdi-calendar-account bg-{{ $book->status->color }}-lighten text-info timeline-icon"></i>
+                                            <div class="timeline-item-info">
+                                                <p class="text-{{ $book->status->color }} fw-bold mb-1 d-block">
+                                                    {{ $order->price->product->name }}
+                                                    {{ date('d-m-Y', strtotime($book->date)) }}</p>
+                                                <p class="mb-0 pt-0">{{ $book->status->name }}</p>
+                                                <p class="mb-0 pt-0">{{ $book->content }}</p>
+                                                <p class="mb-0 pt-0">
+                                                    <small class="text-muted">Giờ hẹn:
+                                                        {{ date('H:m', strtotime($book->time)) }}</small>
+                                                </p>
+                                                <p class="mb-0 pb-0">
+                                                    <small class="text-muted">Giờ cập nhật:
+                                                        {{ date('H:m d-m-Y', strtotime($book->updated_at)) }}</small>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endforeach
                             </div>
 
                         </div>
@@ -115,7 +102,7 @@
                     </div> <!-- end tab-pane -->
 
 
-                    <div class="tab-pane" id="settings">
+                    {{-- <div class="tab-pane" id="settings">
                         <form>
                             <h5 class="mb-2 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Thông tin cá
                                 nhân
@@ -138,17 +125,17 @@
                                             data-date-container="#datepicker1">
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->
+                            </div>
 
-                            {{-- <div class="row">
+                            <div class="row">
                                 <div class="col-12">
                                     <div class="mb-3">
-                                        <label for="userbio" class="form-label">Bio</label>
+                                        <label for="userbio" class="form-label">Thông tin người dùng</label>
                                         <textarea class="form-control" id="userbio" rows="4"
-                                            placeholder="Write something..."></textarea>
+                                            placeholder="Thông tin người dùng...">{{ Auth::user()->profile->info }}</textarea>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row --> --}}
+                            </div> <!-- end row -->
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -170,12 +157,14 @@
                                                 <a href="javascript: void(0);">kích</a> ở đây.</small></span>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->
+                            </div>
 
-                            {{-- <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building me-1"></i>
+                            <!-- end row -->
+
+                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building me-1"></i>
                                 Thông tin Công ty</h5>
-                            <div class="row"> --}}
-                            {{-- <div class="col-md-6">
+                            <div class="row">
+                            <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="companyname" class="form-label">Tên công ty</label>
                                         <input type="text" class="form-control" id="companyname"
@@ -189,7 +178,7 @@
                                             placeholder="Enter website url">
                                     </div>
                                 </div> <!-- end col -->
-                            </div> --}}
+                            </div>
                             <!-- end row -->
 
                             <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-earth me-1"></i> Mạng xã
@@ -215,14 +204,15 @@
                                         </div>
                                     </div>
                                 </div> <!-- end col -->
-                            </div> <!-- end row -->
+                            </div>
+                            <!-- end row -->
 
                             <div class="text-end">
                                 <button type="submit" class="btn btn-success mt-2"><i
                                         class="mdi mdi-content-save"></i> Lưu</button>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <!-- end settings content-->
 
                 </div> <!-- end tab-content -->

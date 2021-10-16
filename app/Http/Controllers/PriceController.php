@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Http;
 use App\Repositories\PriceRepository;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Env;
 
 class PriceController extends AppBaseController
 {
@@ -161,15 +162,25 @@ class PriceController extends AppBaseController
 
         $order = Order::create($input);
 
-        // Varible sms
-        $username = $order->user->profile->username;
-        $totalOrder = number_format($order->total, 0) . ' dong';
         // Send sms
+        $username = $order->user->profile->username;
+        $totalOrder = number_format($order->total, 0) . ' đồng';
         $data = Server::first()->attributesToArray();
         $url = $data['url'];
         $data['number'] = $order->user->phone;
         $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
         Http::get($url, $data);
+
+        // Zalo
+        $dataZalo = [];
+        $dataZalo['recipient']['user_id'] = env('ZALO_OA');
+        $dataZalo['message']['text']= $data['message'];
+
+        Http::withHeaders([
+            'access_token' => env('ZALO_TOKEN'),
+            'Accept' => 'application/json',
+            ])->post(env('ZALO_URL'), $dataZalo);
+
 
         Toastr::success('Đặt dịch vụ thành công.');
 
