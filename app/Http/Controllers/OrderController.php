@@ -147,11 +147,6 @@ class OrderController extends AppBaseController
     {
         $order = $this->orderRepository->find($id);
 
-        // Varible sms
-        $username = $order->user->profile->username;
-        $totalOrder = number_format($order->total, 0) . ' dong';
-
-
         if (empty($order)) {
             Toastr::error('Không tìm thấy đơn hàng');
 
@@ -164,14 +159,20 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->update($request->all(), $id);
 
-
-
         // Send sms
         $data = Server::first()->attributesToArray();
         $url = $data['url'];
         $data['number'] = $order->user->phone;
-        $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
-        $response = Http::get($url, $data);
+        $username = $order->user->profile->username;
+
+        if ($order->status->id == 210003 || $order->status->id == 210005) {
+            $totalOrder = number_format($order->total, 0) . ' dong';
+            $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
+        } else {
+            $data['message']    = sprintf($order->status->template->content, $username);
+        }
+
+        Http::get($url, $data);
 
         Toastr::success('Cập nhật đơn hàng thành công.');
 
@@ -234,9 +235,18 @@ class OrderController extends AppBaseController
 
         $input['date']  = date('Y-m-d', strtotime($request->date));
 
-        // dd($input['date']);
+        $book = Book::create($input);
 
-        Book::create($input);
+        // Send sms
+        $data = Server::first()->attributesToArray();
+        $url = $data['url'];
+        $data['number'] = $book->order->user->phone;
+        $time = date('H:m', strtotime($book->time)) . ' phút';
+        $date = date('d-m-Y', strtotime($book->date));
+
+        $data['message']    = sprintf($book->status->template->content, $time, $date);
+
+        Http::get($url, $data);
 
         Toastr::success('Đặt lịch thành công.');
 

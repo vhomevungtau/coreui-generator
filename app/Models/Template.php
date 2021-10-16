@@ -47,7 +47,7 @@ class Template extends EloquentModel
      */
     public static $rules = [
         'status_id' => 'required',
-        'content' => 'required|max:160'
+        'content' => 'required|max:250'
     ];
 
     public function status()

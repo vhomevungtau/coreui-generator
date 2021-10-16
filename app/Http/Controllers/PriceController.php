@@ -169,7 +169,7 @@ class PriceController extends AppBaseController
         $url = $data['url'];
         $data['number'] = $order->user->phone;
         $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
-        $response = Http::get($url, $data);
+        Http::get($url, $data);
 
         Toastr::success('Đặt dịch vụ thành công.');
 
