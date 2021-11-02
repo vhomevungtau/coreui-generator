@@ -6,15 +6,16 @@ use Response;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Price;
+use Telegram\Bot\Api;
 use App\Models\Server;
 use App\Models\Status;
+use Illuminate\Support\Env;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Http;
 use App\Repositories\PriceRepository;
 use App\Http\Requests\UpdatePriceRequest;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Env;
 
 class PriceController extends AppBaseController
 {
@@ -169,18 +170,15 @@ class PriceController extends AppBaseController
         $url = $data['url'];
         $data['number'] = $order->user->phone;
         $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
-        Http::get($url, $data);
+        // Http::get($url, $data);
 
-        // Zalo
-        $dataZalo = [];
-        $dataZalo['recipient']['user_id'] = env('ZALO_OA');
-        $dataZalo['message']['text']= $data['message'];
+        // Telegram
 
-        Http::withHeaders([
-            'access_token' => env('ZALO_TOKEN'),
-            'Accept' => 'application/json',
-            ])->post(env('ZALO_URL'), $dataZalo);
-
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $telegram->sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'text' => $data['message']
+        ]);
 
         Toastr::success('Đặt dịch vụ thành công.');
 

@@ -21,13 +21,13 @@
 <body class="loading authentication-bg"
     data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
 
-    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+    <div class="account-pages pt-2 pt-sm-2 pb-4 pb-sm-2">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xxl-4 col-lg-5">
                     <div class="card">
                         <!-- Logo-->
-                        <div class="card-header pt-3 pb-3 text-center bg-primary">
+                        <div class="card-header pt-2 pb-2 text-center bg-primary">
                             <a href="{{ url('/home') }}">
                                 <span><img src="{{ asset('images/logosite.png') }}" alt="" height="30"></span>
                             </a>
@@ -115,10 +115,6 @@
         <!-- end container -->
     </div>
     <!-- end page -->
-
-    <footer class="footer footer-alt">
-        2021 © VHome
-    </footer>
 
     <!-- bundle -->
     <script src="{{ asset('js/vendor.min.js') }}"></script>

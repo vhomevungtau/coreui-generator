@@ -178,7 +178,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        App\Providers\SmsServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
 
     ],
 
@@ -236,6 +236,7 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Telegram' => Telegram\Bot\Laravel\Facades\Telegram::class,
     ],
 
 ];

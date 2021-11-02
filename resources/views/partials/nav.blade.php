@@ -118,7 +118,12 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ asset('images/users/avatar-1.png') }}" alt="user-image" class="rounded-circle">
+                    @if (Auth::user()->photo != null)
+                    <img src="{{asset(Auth::user()->photo)}}" alt="user-image" class="rounded-circle">
+                    @else
+                    <img src="{{asset('images/avatars/user.png')}}" alt="user-image" class="rounded-circle">
+                    @endif
+
                 </span>
                 <span class="center">
                     <span class="account-user-name">{{ Auth::user()->name }}</span>

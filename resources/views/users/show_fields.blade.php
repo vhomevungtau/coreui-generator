@@ -2,8 +2,14 @@
     <div class="col-xl-4 col-lg-5">
         <div class="card text-center">
             <div class="card-body">
-                <img src="{{ asset('images/users/avatar-1.png') }}" class="rounded-circle avatar-lg img-thumbnail"
-                    alt="profile-image">
+                @if ($user->photo != null)
+                <img src="{{ asset($user->photo) }}" class="rounded-circle avatar-lg img-thumbnail"
+                alt="profile-image">
+                @else
+                <img src="{{ asset('images/avatars/user.png') }}" class="rounded-circle avatar-lg img-thumbnail"
+                alt="profile-image">
+                @endif
+
 
                 <h4 class="mb-0 mt-2">{{ $user->name }}</h4>
                 {{-- <p class="text-muted font-14">Founder</p> --}}
@@ -11,10 +17,7 @@
                 {{-- <button type="button" class="btn btn-success btn-sm mb-2">Nhắn tin</button> --}}
 
                 <div class="text-start mt-3">
-                    <h4 class="font-13 text-uppercase">THÔNG TIN</h4>
-                    <p class="text-muted font-13 mb-3">
-                        {{ $user->profile->info }}
-                    </p>
+
                     <p class="text-muted mb-2 font-13"><strong>Họ tên :</strong> <span
                             class="ms-2">{{ $user->name }}</span></p>
 
@@ -31,6 +34,12 @@
                     @foreach ($user->tags as $v)
                         <span class="badge badge-outline-{{ $v->color }} rounded-pill">{{ $v->name }}</span>
                     @endforeach
+
+                    <h4 class="font-13 text-uppercase">THÔNG TIN</h4>
+                    @if ($user->profile->info != null)
+                    <p class="text-muted mb-2 font-13"> <span
+                        class="ms-2">{{ $user->profile->info }}</span></p>
+                    @endif
 
                 </div>
 

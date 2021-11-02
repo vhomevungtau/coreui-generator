@@ -9,18 +9,17 @@ use App\Models\User;
 use App\Models\Price;
 use App\Models\Server;
 use App\Models\Status;
-use Illuminate\Support\Arr;
-
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
 use Brian2694\Toastr\Facades\Toastr;
-
 use Illuminate\Support\Facades\Http;
 use App\Repositories\OrderRepository;
 use App\Http\Requests\CreateBookRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Telegram\Bot\Laravel\Facades\Telegram;
 use App\Http\Controllers\AppBaseController;
+use Telegram\Bot\Api;
 
 class OrderController extends AppBaseController
 {
@@ -41,6 +40,7 @@ class OrderController extends AppBaseController
      */
     public function index(Request $request)
     {
+
         $orders = $this->orderRepository->all();
 
         return view('orders.index')
@@ -58,7 +58,7 @@ class OrderController extends AppBaseController
         $prices     = Price::all();
         $statuses   = Status::all();
 
-        return view('orders.create',[
+        return view('orders.create', [
             'users'     => $users,
             'prices'    => $prices,
             'statuses'  => $statuses
@@ -78,7 +78,7 @@ class OrderController extends AppBaseController
 
         $price = Price::find($request->price_id)->price;
 
-        $input['total'] = (Double)$price - ((Double)$price * (Double)$request->discount);
+        $input['total'] = (float)$price - ((float)$price * (float)$request->discount);
 
 
         $order = $this->orderRepository->create($input);
@@ -121,7 +121,7 @@ class OrderController extends AppBaseController
 
         $users      = User::all();
         $prices     = Price::all();
-        $statuses   = Status::all();
+        $statuses   = Status::where('type', 'order')->get();
 
         if (empty($order)) {
             Toastr::error('Không tìm thấy đơn hàng');
@@ -129,7 +129,7 @@ class OrderController extends AppBaseController
             return redirect(route('admin.orders.index'));
         }
 
-        return view('orders.edit',[
+        return view('orders.edit', [
             'order'     => $order,
             'users'     => $users,
             'prices'    => $prices,
@@ -157,7 +157,7 @@ class OrderController extends AppBaseController
 
         $price = Price::find($order->price_id)->price;
 
-        $request['total'] = (Double)$price - ((Double)$price * (Double)$request->discount);
+        $request['total'] = (float)$price - ((float)$price * (float)$request->discount);
 
         $order = $this->orderRepository->update($request->all(), $id);
 
@@ -169,7 +169,7 @@ class OrderController extends AppBaseController
 
         $data['message'] = "";
 
-        if ($order->status->id == 210003 || $order->status->id == 210005) {
+        if ($order->status->name == 'payment') {
             $totalOrder = number_format($order->total, 0) . ' dong';
             $data['message']    = sprintf($order->status->template->content, $username, $totalOrder);
         } else {
@@ -178,15 +178,12 @@ class OrderController extends AppBaseController
 
         Http::get($url, $data);
 
-        // Zalo
-        $dataZalo = [];
-        $dataZalo['recipient']['user_id'] = env('ZALO_OA');
-        $dataZalo['message']['text']= $data['message'];
-
-        Http::withHeaders([
-            'access_token' => env('ZALO_TOKEN'),
-            'Accept' => 'application/json',
-            ])->post(env('ZALO_URL'), $dataZalo);
+        // Telegram
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $telegram->sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'text' => $data['message']
+        ]);
 
         Toastr::success('Cập nhật đơn hàng thành công.');
 
@@ -223,7 +220,7 @@ class OrderController extends AppBaseController
     {
         $order = $this->orderRepository->find($id);
 
-        $statuses   = Status::where('type','book')->get();
+        $statuses   = Status::where('type', 'book')->get();
 
         if ($order->price->number - $order->books->count() <= 0) {
 
@@ -237,7 +234,7 @@ class OrderController extends AppBaseController
             return redirect(route('admin.orders.index'));
         }
 
-        return view('orders.book',[
+        return view('orders.book', [
             'order'     => $order,
             'statuses'    => $statuses
         ]);
@@ -260,7 +257,7 @@ class OrderController extends AppBaseController
 
         $data['message']    = sprintf($book->status->template->content, $time, $date);
 
-        Http::get($url, $data);
+        // Http::get($url, $data);
 
         // Google Calendar
         $event = new Event;
@@ -269,15 +266,13 @@ class OrderController extends AppBaseController
         $event->endDateTime = Carbon::now()->addHour();
         $event->save();
 
-       // Zalo
-       $dataZalo = [];
-       $dataZalo['recipient']['user_id'] = env('ZALO_OA');
-       $dataZalo['message']['text']= $data['message'];
+        // Telegram
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
 
-       Http::withHeaders([
-           'access_token' => env('ZALO_TOKEN'),
-           'Accept' => 'application/json',
-           ])->post(env('ZALO_URL'), $dataZalo);
+        $telegram->sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'text' => $data['message']
+        ]);
 
         Toastr::success('Đặt lịch thành công.');
 

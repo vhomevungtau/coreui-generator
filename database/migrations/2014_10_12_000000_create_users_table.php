@@ -16,7 +16,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('uid')->nullable();
             $table->string('name');
+            $table->string('photo')->default('');
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->date('birthday')->default(Carbon::now()->format('Y-m-d'));

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PermissionController;
+use Monolog\Handler\TelegramBotHandler;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +36,19 @@ Route::post(
     '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile'
 )->name('io_generator_builder_generate_from_file');
 
+
+
+// Socialite
+// Facebook
+Route::get('/login/facebook/redirect', [LoginController::class, 'facebookRedirect'])->name('facebook.redirect');
+Route::get('/login/facebook/callback', [LoginController::class, 'facebookCallback']);
+// Zalo
+Route::get('/login/zalo/redirect', [LoginController::class, 'zaloRedirect'])->name('zalo.redirect');
+Route::get('/login/zalo/callback', [LoginController::class, 'zaloCallback']);
+// Facebook
+Route::get('/login/google/redirect', [LoginController::class, 'googleRedirect'])->name('google.redirect');
+Route::get('/login/google/callback', [LoginController::class, 'googleCallback']);
+
 // Dashboard
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
 
@@ -42,11 +57,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     // User
     Route::resource('users', UserController::class);
-    Route::get('/users/{id}/profile',[UserController::class,'getProfile'])->name('users.getprofile');
-    Route::put('/users/{id}/profile',[UserController::class,'postProfile'])->name('users.postprofile');
+    Route::get('/users/{id}/profile', [UserController::class, 'getProfile'])->name('users.getprofile');
+    Route::put('/users/{id}/profile', [UserController::class, 'postProfile'])->name('users.postprofile');
 
     // Role
-    Route::get('/roles',[RoleController::class,'index'])->name('roles.index');
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
 
     // Tag
     // Route::resource('tags', TagController::class)->except(['show']);
@@ -57,33 +72,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     // Product manager
     Route::resource('products', App\Http\Controllers\ProductController::class)->except(['show']);
 
-    Route::resource('prices', App\Http\Controllers\PriceController::class)->except(['show','create','store']);
+    Route::resource('prices', App\Http\Controllers\PriceController::class)->except(['show', 'create', 'store']);
 
     Route::resource('statuses', App\Http\Controllers\StatusController::class)->except(['show']);
 
     Route::resource('orders', App\Http\Controllers\OrderController::class);
 
-    Route::resource('themes', App\Http\Controllers\ThemeController::class)->only(['index','store']);
+    Route::resource('themes', App\Http\Controllers\ThemeController::class)->only(['index', 'store']);
 
-    Route::resource('books', App\Http\Controllers\BookController::class)->except(['show','create','store']);
+    Route::resource('books', App\Http\Controllers\BookController::class)->except(['show', 'create', 'store']);
 
     // Custome route
-    Route::get('/products/{id}/price',[ProductController::class,'addPrice'])->name('products.getprice');
-    Route::post('/products/price',[ProductController::class,'postPrice'])->name('products.postprice');
+    Route::get('/products/{id}/price', [ProductController::class, 'addPrice'])->name('products.getprice');
+    Route::post('/products/price', [ProductController::class, 'postPrice'])->name('products.postprice');
 
-    Route::get('/prices/{id}/order',[PriceController::class,'getOrder'])->name('prices.getorder');
-    Route::post('/prices/order',[PriceController::class,'postOrder'])->name('prices.postorder');
+    Route::get('/prices/{id}/order', [PriceController::class, 'getOrder'])->name('prices.getorder');
+    Route::post('/prices/order', [PriceController::class, 'postOrder'])->name('prices.postorder');
 
-    Route::get('/orders/{id}/book',[OrderController::class,'getBook'])->name('orders.getbook');
-    Route::post('/orders/book',[OrderController::class,'postBook'])->name('orders.postbook');
+    Route::get('/orders/{id}/book', [OrderController::class, 'getBook'])->name('orders.getbook');
+    Route::post('/orders/book', [OrderController::class, 'postBook'])->name('orders.postbook');
 
     Route::resource('templates', App\Http\Controllers\TemplateController::class);
 
-    Route::resource('servers', App\Http\Controllers\ServerController::class)->only(['index','store']);
+    Route::resource('servers', App\Http\Controllers\ServerController::class)->only(['index', 'store']);
 
-    Route::resource('profiles', App\Http\Controllers\ProfileController::class)->only(['index','store']);
+    // Route::resource('profiles', App\Http\Controllers\ProfileController::class)->only(['index','store']);
 
-    Route::post('/message',[MessageController::class,'store']);
-
-
+    Route::post('/message', [MessageController::class, 'store']);
 });

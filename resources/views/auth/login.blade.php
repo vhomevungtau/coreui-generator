@@ -20,14 +20,14 @@
 
 <body class="loading authentication-bg"
     data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
-    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">
+    <div class="account-pages pt-sm-2 pb-2 pb-sm-2">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xxl-4 col-lg-5">
                     <div class="card">
 
                         <!-- Logo -->
-                        <div class="card-header pt-3 pb-3 text-center bg-primary">
+                        <div class="card-header pt-2 pb-2 text-center bg-primary">
                             <a href="{{ url('/') }}">
                                 <span><img src="{{ asset('images/logosite.png') }}" alt="" height="30"></span>
                             </a>
@@ -66,15 +66,25 @@
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
 
-                                <div class="mb-1 mb-1">
+                                <div class="mb-1">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="remember">
                                         <label class="form-check-label" for="remember">Ghi nhớ đăng nhập lần sau</label>
                                     </div>
                                 </div>
 
-                                <div class="mb-1 mb-0 text-center">
+                                <div class="mb-3 text-center">
                                     <button class="btn btn-primary btn-rounded" type="submit"> Đăng nhập </button>
+                                </div>
+
+                                <div class="mb-2 text-center">
+                                    <span>Đăng nhập bằng mạng xã hội</span>
+                                </div>
+
+                                <div class="mb-2 text-center">
+                                    <a href="{!! route('zalo.redirect') !!}"class="btn btn-info btn-rounded"><img src="{{ asset('images/zalo.png') }}" height="16px"></i></a>
+                                    <a href="{!! route('facebook.redirect') !!}" class="btn btn-primary btn-rounded" ><i class="mdi mdi-facebook"></i> Facebook </a>
+                                    <a href="{!! route('google.redirect') !!}"class="btn btn-danger btn-rounded" ><i class="mdi mdi-google"></i> Google </a>
                                 </div>
 
                             </form>
@@ -97,10 +107,6 @@
         <!-- end container -->
     </div>
     <!-- end page -->
-
-    <footer class="footer footer-alt">
-        2021 © VHome
-    </footer>
 
     <!-- bundle -->
     <script src="{{ asset('js/vendor.min.js') }}"></script>

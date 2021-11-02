@@ -26,7 +26,7 @@
     <select class="form-select" name="status_id">
         @foreach ($statuses as $v)
             <option value="{{ $v->id }}" @if ($v->id == $order->status_id) selected @endif>
-                {{ $v->name }}</option>
+                {{ $v->desc }}</option>
         @endforeach
     </select>
 </div>

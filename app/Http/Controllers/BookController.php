@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Response;
+use App\Models\Book;
+use Telegram\Bot\Api;
 use App\Models\Server;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -11,7 +13,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Controllers\AppBaseController;
-use App\Models\Book;
 
 class BookController extends AppBaseController
 {
@@ -92,18 +93,23 @@ class BookController extends AppBaseController
         $date = date('d-m-Y', strtotime($book->date));
         $username = $book->order->user->profile->username;
 
-        if ($book->status->id == 210007 ||$book->status->id == 210009) {
+        if ($book->status->name == 'confirm' || $book->status->id == 'cancel') {
             $data['message']    = sprintf($book->status->template->content, $time, $date);
-        } elseif ($book->status->id == 210008) {
-            $data['message']    = sprintf($book->status->template->content, $username);
-        }else{
+        } else{
             $number = Book::where('order_id',$book->order_id)
-                    ->where('status_id',210010)
+                    ->where($book->status->name,'=', 'finish')
                     ->count();
             $data['message']    = sprintf($book->status->template->content, $username,$number);
         }
 
         Http::get($url, $data);
+
+        // Telegram
+        $telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $telegram->sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'text' => $data['message']
+        ]);
 
         Toastr::success('Cập nhật lịch thành công.');
 

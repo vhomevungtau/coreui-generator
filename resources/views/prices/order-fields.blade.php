@@ -20,7 +20,7 @@
     {!! Form::label('name', 'Trạng thái') !!}
     <select class="form-select" name="status_id">
         @foreach ($statuses as $v)
-            <option value="{{ $v->id }}">{{ $v->name }}</option>
+            <option value="{{ $v->id }}">{{ $v->desc }}</option>
         @endforeach
     </select>
 </div>
